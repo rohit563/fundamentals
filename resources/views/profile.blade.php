@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Profile</div>
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile') }}">
+                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile', Auth::user()->id) }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
     
@@ -141,7 +141,7 @@
                                     </button>
                                 </div>
                             </div>
-                            </input>
+                            <!--</input>-->
                     </form>
                 </div>
             </div>

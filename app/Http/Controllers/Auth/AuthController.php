@@ -99,7 +99,9 @@ class AuthController extends Controller
         ]);
     }
     public function update(Request $request) {
-        $user = Auth::user();
+        $id = Auth::user->id;
+        var_dump($id)
+        $user = User::find($id);
         $user->name = Input::get('name');
         $user->email = Input::get('email');
         $user->address1 = Input::get('address1');
