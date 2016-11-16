@@ -25,6 +25,8 @@ Route::get('/profile', 'ProfileController@index');
 Route::put('/profile','Auth\AuthController@update');
 Route::resource('users','ProfileController');
 Route::resource('users','AuthController');
+Route::resource('elections','ElectionsController');
+Route::get('/elections','ElectionsController@index');
 // Route::get('protected', ['middleware' => ['auth', 'manager'], function() {
 //     return "this page requires that you be logged in and a Manager";
 // }]);
