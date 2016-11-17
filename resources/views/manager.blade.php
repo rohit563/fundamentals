@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
+        <button type = "button" onclick="window.location = 'elections';"  class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Manager Dashboard</div>

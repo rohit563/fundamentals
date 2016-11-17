@@ -5,44 +5,53 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Profile</div>
+                <div class="panel-heading">Election Form</div>
+                @if ( $errors->count() > 0 )
+                  <p>The following errors have occurred:</p>
+
+                  <ul>
+                    @foreach( $errors->all() as $message )
+                      <li>{{ $message }}</li>
+                    @endforeach
+                  </ul>
+                @endif
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/elections') }}">
+                     <form class="form-horizontal" role="form" method="post" action="{{ url('/elections') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
     
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Candidate Name</label>
+                            <div>
+                                <label for="name" class="col-md-4 control-label">Election Name</label>
     
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name">
                                 </div>
                             </div>
-                             <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
-                                <label for="running_mate" class="col-md-4 control-label">Running Mate</label>
+                             <div>
+                                <label for="Election_Info" class="col-md-4 control-label">Election Info</label>
     
                                 <div class="col-md-6">
-                                    <input id="running_mate" type="text" class="form-control" name="running_mate">
+                                    <input type="text" name="Election_Info" id="Election_Info" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="political_party" class="col-md-4 control-label">Political Party</label>
+                            <div>
+                                <label for="Election_Date" class="col-md-4 control-label">Election Date</label>
     
                                 <div class="col-md-6">
-                                    <input id="political_party" type="text" class="form-control" name="political_party">
+                                    <input type="date" name="Election_Date" id="Election_Date" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('address2') ? ' has-error' : '' }}">
-                                <label for="about" class="col-md-4 control-label">About</label>
+                            <div>
+                                <label for="Election_Type" class="col-md-4 control-label">Election Type</label>
     
                                 <div class="col-md-6">
-                                    <input id="about" type="textarea" class="form-control" name="about">
+                                    <input type="text" name="Election_Type" id="Election_Type" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-elections"></i> Update
+                                    <button type="submit" class="btn btn-primary" value = "Create_Election" align = "center"
+                                        <i class="fa fa-btn fa-elections"></i> Create Election
                                     </button>
                                 </div>
                             </div>

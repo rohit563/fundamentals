@@ -21,12 +21,14 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/manager', 'ManagerController@index');
 Route::get('/add', 'AddController@index');
-Route::get('/profile', 'ProfileController@index');
-Route::put('/profile','Auth\AuthController@update');
-Route::resource('users','ProfileController');
-Route::resource('users','AuthController');
-Route::resource('elections','ElectionsController');
+Route::get('/profile', 'usercontroller@index');
+Route::put('/profile','usercontroller@update');
+Route::resource('users','usercontroller');
+// Route::resource('users','AuthController');
+Route::resource('/elections','ElectionsController');
 Route::get('/elections','ElectionsController@index');
+Route::post('/elections','ElectionsController@show');
+// Route::get('/elections', array('uses' => 'ElectionsController@index', 'as' => 'elections'));
 // Route::get('protected', ['middleware' => ['auth', 'manager'], function() {
 //     return "this page requires that you be logged in and a Manager";
 // }]);

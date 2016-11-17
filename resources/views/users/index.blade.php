@@ -7,10 +7,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Profile</div>
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form" method="POST" action="{{ url('profile.update', $user->Auth::user()->id }}">
+                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile') }}">
                         {{ csrf_field() }}
                         @if (Session::has('message'))
-                            <div class="flash alert">
+                            <div class="alert alert-success">
                                 <p>{{ Session::get('message') }}</p>
                             </div>
                         @endif
@@ -112,7 +112,6 @@
                                     @endif
                                 </div>
                             </div>
-                            
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">

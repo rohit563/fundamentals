@@ -24,8 +24,8 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('profile');
-    }
+    // public function index()
+    // {
+    //     return view('profile');
+    // }
 }
