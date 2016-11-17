@@ -14,9 +14,24 @@ class usercontroller extends Controller
 {
     //
     
+     protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'username' => 'required|unique:users',
+            'gender' => 'required',
+            'address1' => 'required',
+            'zip' => 'required|min:5',
+            'dob' => 'required|date', 
+            'type' => 'min:1',
+            
+            
+        ]);
+    }
     
-    
-        public function update(Request $request) {
+    public function update(Request $request) {
         
         // var_dump($id)
         // $user = User::find($users);

@@ -98,34 +98,6 @@ class AuthController extends Controller
             
         ]);
     }
-    public function update(Request $request) {
-        
-        // var_dump($id)
-        // $user = User::find($id);
-        $input = $request->only('name','email', 'address1', 'address2', 'city', 'state', 'zip', 'type');
-        $id = Auth::user();
-        $user->name = $input['name'];
-        $user->email = $input['email'];
-        $user->address1 = $input['address1'];
-        $user->address2 = $input['address2'];
-        $user->city = $input['city'];
-        $user->state = $input['state'];
-        $user->zip = $input['zip'];
-        $user->type = $input['type'];
-        // $user->name = Input::get('name');
-        // $user->email = Input::get('email');
-        // $user->address1 = Input::get('address1');
-        // $user->address2 = Input::get('address2');
-        // $user->city = Input::get('city');
-        // $user->state = Input::get('state');
-        // $user->zip = Input::get('zip');
-        // $user->type = Input::get('type');
-        $user->save();
-        
-        // return back();
-        return redirect("/profile");
-    }
-
     
     public function register(Request $request)
     {
