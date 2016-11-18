@@ -55,9 +55,6 @@
                         @else
                             <li><a href="{{ url('/home') }}">Dashboard</a></li>
                         @endif
-                        @if (Auth::user()->type == 1)
-                            <li><a href="{{ url('/election') }}">Elections</a></li>
-                        @endif
                     @endif
                 </ul>
 
