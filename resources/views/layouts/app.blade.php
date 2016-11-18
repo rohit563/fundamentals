@@ -48,10 +48,15 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     @if(Auth::user())
-                        @if (Auth::user()->type == 2)
+                        @if (Auth::user()->type == 1)
+                            <li><a href="{{ url('/admin') }}">Dashboard</a></li>
+                        @elseif (Auth::user()->type == 2)
                             <li><a href="{{ url('/manager') }}">Dashboard</a></li>
                         @else
                             <li><a href="{{ url('/home') }}">Dashboard</a></li>
+                        @endif
+                        @if (Auth::user()->type == 1)
+                            <li><a href="{{ url('/election') }}">Elections</a></li>
                         @endif
                     @endif
                 </ul>

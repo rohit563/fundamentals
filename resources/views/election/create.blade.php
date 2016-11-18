@@ -6,39 +6,35 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form</div>
-                @if ( $errors->count() > 0 )
-                  <p>The following errors have occurred:</p>
-
-                  <ul>
-                    @foreach( $errors->all() as $message )
-                      <li>{{ $message }}</li>
-                    @endforeach
-                  </ul>
-                @endif
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form" method="post" action="{{ url('/elections') }}">
+                     <form class="form-horizontal" role="form" method="post" action="{{ url('/election') }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="PUT">
+                        @if (Session::has('message'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('message') }}</p>
+                            </div>
+                        @endif
+                        <input type="hidden" name="_method" value="POST">
     
                             <div>
                                 <label for="name" class="col-md-4 control-label">Election Name</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name">
+                                    <input id="Name" type="Text" class="form-control" name="Name">
                                 </div>
                             </div>
                              <div>
-                                <label for="Election_Info" class="col-md-4 control-label">Election Info</label>
+                                <label for="Election_info" class="col-md-4 control-label">Election Info</label>
     
                                 <div class="col-md-6">
-                                    <input type="text" name="Election_Info" id="Election_Info" class="form-control">
+                                    <input type="text" name="Election_info" id="Election_info" class="form-control">
                                 </div>
                             </div>
                             <div>
-                                <label for="Election_Date" class="col-md-4 control-label">Election Date</label>
+                                <label for="Date" class="col-md-4 control-label">Election Date</label>
     
                                 <div class="col-md-6">
-                                    <input type="date" name="Election_Date" id="Election_Date" class="form-control">
+                                    <input type="date" name="Date" id="Date" class="form-control">
                                 </div>
                             </div>
                             <div>
@@ -50,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary" value = "Create_Election" align = "center"
+                                    <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center"
                                         <i class="fa fa-btn fa-elections"></i> Create Election
                                     </button>
                                 </div>

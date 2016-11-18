@@ -14,7 +14,7 @@ class usercontroller extends Controller
 {
     //
     
-     protected function validator(array $data)
+    protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
