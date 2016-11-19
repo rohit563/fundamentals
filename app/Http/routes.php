@@ -29,8 +29,8 @@ Route::resource('users','usercontroller');
 
 Route::get('/election','ElectionsController@index');
 Route::post('/election','ElectionsController@store');
+Route::get('/election','ElectionsController@show');
 Route::resource('election','ElectionsController');
-// Route::get('/elections', array('uses' => 'ElectionsController@index', 'as' => 'elections'));
 // Route::get('protected', ['middleware' => ['auth', 'manager'], function() {
 //     return "this page requires that you be logged in and a Manager";
 // }]);

@@ -13,7 +13,8 @@ class CreateElectionsTable extends Migration
     public function up()
     {
         Schema::create('elections', function (Blueprint $table) {
-            $table->increments('Election_info');
+            $table->increments('id');
+            $table->string('Election_info');
             $table->string('Name');
             $table->string('Date');
             $table->string('Election_Type');

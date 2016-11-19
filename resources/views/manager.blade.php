@@ -17,9 +17,12 @@
         <div class="col-md-2 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">National Elections</div>
-
                 <div class="panel-body">
-                    Election 1
+                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/show') }}">
+                        <button type="submit" class="btn btn-primary" value = "View Elections" text-align = "center">
+                        <i class="fa fa-btn fa-elections"></i> View Election 
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -41,5 +44,6 @@
                 </div>
             </div>
         </div>
+        
 </div>
 @endsection
