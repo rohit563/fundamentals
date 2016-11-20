@@ -16,7 +16,7 @@ class ElectionsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'Name' =>           'Required|Min:3|Max:80|Alpha',
+            'Name' =>           'Required',
             'Election_info'=>   'Required',
             'Date' =>           'Required|Date',
             'Election_Type' =>  'Required'
