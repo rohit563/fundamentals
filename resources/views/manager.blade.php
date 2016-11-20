@@ -18,7 +18,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">National Elections</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/show') }}">
+                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/1') }}">
                         <button type="submit" class="btn btn-primary" value = "View Elections" text-align = "center">
                         <i class="fa fa-btn fa-elections"></i> View Election 
                         </button>
@@ -31,7 +31,11 @@
                 <div class="panel-heading">State Elections</div>
 
                 <div class="panel-body">
-                    Election 2
+                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/2') }}">
+                        <button type="submit" class="btn btn-primary" value = "View Elections" text-align = "center">
+                        <i class="fa fa-btn fa-elections"></i> View Election 
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -40,7 +44,11 @@
                 <div class="panel-heading">Local Elections</div>
 
                 <div class="panel-body">
-                    Election 3
+                   <form class="form-horizontal" role="form" method="get" action="{{ url('/election/3') }}">
+                        <button type="submit" class="btn btn-primary" value = "View Elections" text-align = "center">
+                        <i class="fa fa-btn fa-elections"></i> View Election 
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

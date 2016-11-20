@@ -20,7 +20,7 @@
                                 <label for="name" class="col-md-4 control-label">Election Name</label>
     
                                 <div class="col-md-6">
-                                    <input id="Name" type="Text" class="form-control" name="Name">
+                                    <input id="Name" type="text" class="form-control" name="Name">
                                 </div>
                             </div>
                              <div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-6 col-md-offset-4" align="center" style = "margin-top:20px">
                                     <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center"
                                         <i class="fa fa-btn fa-elections"></i> Create Election
                                     </button>

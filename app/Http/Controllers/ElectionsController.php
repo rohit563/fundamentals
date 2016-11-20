@@ -9,7 +9,7 @@ use App\Election;
 
 class ElectionsController extends Controller
 {
-    protected function  create(array $data)
+    protected function create(array $data)
     {
         return view('election.show');
     }
@@ -35,9 +35,10 @@ class ElectionsController extends Controller
     {
         return view('election.create');
     }
-    public function show()
+    public function show($id)
     {
-        $election = Election::all();
-        return view('election.show');
+        $election = Election::find($id);
+        return view('election.show',compact('election'));
+        // return $id;
     }
 }

@@ -29,7 +29,7 @@ Route::resource('users','usercontroller');
 
 Route::get('/election','ElectionsController@index');
 Route::post('/election','ElectionsController@store');
-Route::get('/election','ElectionsController@show');
+Route::get('/election/{id}','ElectionsController@show');
 Route::resource('election','ElectionsController');
 // Route::get('protected', ['middleware' => ['auth', 'manager'], function() {
 //     return "this page requires that you be logged in and a Manager";
