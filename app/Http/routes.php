@@ -31,6 +31,7 @@ Route::get('/election','ElectionsController@index');
 Route::post('/election','ElectionsController@store');
 Route::get('/election/{id}','ElectionsController@show');
 Route::resource('election','ElectionsController');
+Route::resource('candidate','ElectionsController');
 // Route::get('protected', ['middleware' => ['auth', 'manager'], function() {
 //     return "this page requires that you be logged in and a Manager";
 // }]);

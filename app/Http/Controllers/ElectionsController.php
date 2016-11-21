@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use DB;
 use App\Election;
+use App\Candidate;
 
 class ElectionsController extends Controller
 {
@@ -21,8 +22,20 @@ class ElectionsController extends Controller
             'Date' =>           'Required|Date',
             'Election_Type' =>  'Required'
         ]);
-        Election::create($request->all());
-        return redirect()->back()->with('message','Election created successfully');
+        
+        // // Candidate Creation
+        
+        $this->validate($request->all(), [
+            'Candidate_Name' => 'Required',
+            'Age'=>             'Required',
+            'Political_Party' => 'Required',
+            'Candidate_Info' => 'Required',
+        ]);
+        
+        Candidate::create($request->all());
+        Election::create($request->only(['Name', 'Election_info','Date','Election_Type']));
+        
+        return redirect()->back()->with('message','Election and Candidates created successfully');
     }
     
     public function register(Request $request)
