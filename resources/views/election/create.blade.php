@@ -1,6 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
+    <script type="text/javascript">
+        //when the webpage has loaded do this
+        $(document).ready(function() {  
+            //if the value within the dropdown box has changed then run this code            
+            $('#num_cand').change(function(){
+                //get the number of fields required from the dropdown box
+                var num = $('#num_cand').val();                  
+
+                var i = 0; //integer variable for 'for' loop
+                var html = ''; //string variable for html code for fields 
+                //loop through to add the number of fields specified
+                for (i=1;i<=num;i++) {
+                    //concatinate number of fields to a variable
+                    html += '<label class="col-md-4 control-label for="candidate_' + i +'"">Candidate ' + i + ' </label><div class="col-md-6"> <input type="text" name="candidate_' + i + '" id="candidate_' + i + '"class="form-control"/></div>'; 
+                }
+
+                //insert this html code into the div with id catList
+                $('#candidateList').html(html);
+            });
+        }); 
+    </script>
+</script>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -44,8 +67,23 @@
                                     <input type="text" name="Election_Type" id="Election_Type" class="form-control">
                                 </div>
                             </div>
+                            <div >
+                            <label for="Election_Type" class="col-md-4 control-label">Number of Candidates</label>
+    
+                            <div class="col-md-6" style = "margin-top:.5em;">
+                                <select id="num_cand" name="num_cand">
+                                    <option value="0">- SELECT -</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </div>
+                            <div id="candidateList"></div>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4" align = "center" style = "margin-top:20px;">
+                                <div class="col-md-6 col-md-offset-4" align = "center" style = "margin-top:.2em;margin-bottom:.2em;">
                                     <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center"
                                         <i class="fa fa-btn fa-elections"></i> Create Election
                                     </button>

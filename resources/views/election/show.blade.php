@@ -41,6 +41,7 @@
                                 <input type="text" name="Election_Type" id="Election_Type" class="form-control" value ="{{$election->Election_Type}}">
                             </div>
                         </div>
+                        
                         <div>
                     </form>        
                             <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}" align = "center">
