@@ -19,30 +19,31 @@
                         <div>
                             <label for="name" class="col-md-4 control-label">Election Name</label>
                             <div class="col-md-6">
-                                <input id="Name" type="Text" class="form-control" name="Name" value ="{{$election->Name}}">
+                                <input id="Name" type="Text" class="form-control" name="Name" value ="{{$election->Name}}" readonly>
                             </div>
                         </div>
                          <div>
                             <label for="Election_info" class="col-md-4 control-label">Election Info</label>
                             <div class="col-md-6">
-                                <input type="text" name="Election_info" id="Election_info" class="form-control" value ="{{$election->Election_info}}">
+                                <input type="text" name="Election_info" id="Election_info" class="form-control" value ="{{$election->Election_info}}" readonly>
                             </div>
                         </div>
                         <div>
                             <label for="Date" class="col-md-4 control-label">Election Date</label>
                             <div class="col-md-6">
-                                <input type="date" name="Date" id="Date" class="form-control" value ="{{$election->Date}}" >
+                                <input type="date" name="Date" id="Date" class="form-control" value ="{{$election->Date}}" readonly>
                             </div>
                         </div>
                         <div>
                             <label for="Election_Type" class="col-md-4 control-label">Election Type</label>
-    
                             <div class="col-md-6">
-                                <input type="text" name="Election_Type" id="Election_Type" class="form-control" value ="{{$election->Election_Type}}">
+                                <h5>{{$election->Election_Type}}</h5>
                             </div>
                         </div>
-                        
                         <div>
+                        
+                            <div id="candidateList">
+                            </div>
                     </form>        
                             <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}" align = "center">
                                 <button type="submit" class="btn btn-primary" value = "View Elections" style = "margin-top:20px;">

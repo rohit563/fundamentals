@@ -16,32 +16,34 @@ class ElectionsController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'Name' =>           'Required',
-            'Election_info'=>   'Required',
-            'Date' =>           'Required|Date',
-            'Election_Type' =>  'Required'
-        ]);
+        // $this->validate($request, [
+        //     'Name' =>           'Required',
+        //     'Election_info'=>   'Required',
+        //     'Date' =>           'Required|Date',
+        //     'Election_Type' =>  'Required'
+        // ]);
+    
+        $election = new Election();
+        $election->Name = $request->Name;
+        $election->Election_info = $request->Election_info;
+        $election-> Date = $request->Date;
+        $election->Election_Type = $request->Election_Type;
+        $election->save();
         
-        // // Candidate Creation
-        // foreach($candidates as $candidate)
-        // {
-        //  if(!empty($candidate))
-        //   {     
-        //     $add=new Cand();   //Item is the model
-        //     $add->name=$item;  //saving item to name column
-        //     $add->save();       
-        //   }
-        // }
-        $this->validate($request, array(
-            'Candidate_Name' => 'Required',
-            'Age'=>             'Required',
-            'Political_Party' => 'Required',
-            'Candidate_Info' => 'Required',
-        ));
-        Candidate::create($request->all());
-        Election::create($request->only(['Candidate_Name', 'Election_info','Date','Election_Type']));
         
+        // Election::create($request->only(['Name', 'Election_info','Date','Election_Type']));
+        //Dynamic Candidate Creation
+        $c = count($request->Candidate_Name);
+        for($i=0;$i<$c;$i++){
+            
+            $candidate = new Candidate();
+            $candidate->Candidate_Name = $request->Candidate_Name[$i];
+            $candidate->Age = $request->Age[$i];
+            $candidate->Political_Party = $request->Political_Party[$i];
+            $candidate->Candidate_Info = $request->Candidate_Info[$i];
+            $candidate->Election_id = $election->id;
+            $candidate->save();
+        }
         return redirect()->back()->with('message','Election and Candidates created successfully');
     }
     
@@ -59,6 +61,5 @@ class ElectionsController extends Controller
     {
         $election = Election::find($id);
         return view('election.show',compact('election'));
-        // return $id;
     }
 }

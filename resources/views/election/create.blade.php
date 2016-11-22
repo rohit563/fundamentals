@@ -13,12 +13,14 @@
                 var i = 0; //integer variable for 'for' loop
                 var html = ''; //string variable for html code for fields 
                 //loop through to add the number of fields specified
+                // id ="Candidate_Name[]"
+                // name="Candidate[' + (i-1) +']"
                 for (i=1;i<=num;i++) {
                     //concatinate number of fields to a variable
-                    html += '<label class="col-md-4 control-label for="Candidate_Name[]"">Candidate ' + i + '</label><div class="col-md-6"><input type="text" name="Candidate_Name[]" id ="Candidate_Name[]" class="form-control" value =""/></div>'; 
-                    html += '<label class="col-md-4 control-label for="Age[]"">Age</label><div class="col-md-6"><input type="text" name="Age[]" id="Age[]" class="form-control"/></div>';
-                    html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6"><div class="col-md-6" style = "margin-top:.5em;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="1">Republican</option><option value="2">Democratic</option><option value="3">Other</option></select></div></div>';
-                    html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control"/></div><br>';
+                    html += '<label class="col-md-4 control-label for="Candidate_Name[]"">Candidate ' + i + '</label><div class="col-md-6"><input type="text" name="Candidate_Name[]" id="Candidate_Name[]" class="form-control" value =""/></div>'; 
+                    html += '<label class="col-md-4 control-label for="Age[]"">Age</label><div class="col-md-6"><input type="text" name="Age[]" id="Age[]" class="form-control" value =""/></div>';
+                    html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6"><div class="col-md-6" style = "margin-top:.5em;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="Republican">Republican</option><option value="Democratic">Democratic</option><option value="Other">Other</option></select></div></div>';
+                    html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control" value=""/></div><br>';
                 }
 
                 //insert this html code into the div with id catList
@@ -26,7 +28,6 @@
             });
         }); 
     </script>
-</script>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -66,8 +67,13 @@
                             <div>
                                 <label for="Election_Type" class="col-md-4 control-label">Election Type</label>
     
-                                <div class="col-md-6">
-                                    <input type="text" name="Election_Type" id="Election_Type" class="form-control">
+                                <div class="col-md-6" style = "margin-top:.5em;">
+                                <select id="Election_Type" name="Election_Type">
+                                    <option value="0">- SELECT -</option>
+                                    <option value="National">National</option>
+                                    <option value="State">State</option>
+                                    <option value="Local">Local</option>
+                                </select>
                                 </div>
                             </div>
                             <div >

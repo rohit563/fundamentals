@@ -18,6 +18,7 @@ class CreateCandidatesTable extends Migration
             $table->string('Age');
             $table->string('Political_Party');
             $table->string('Candidate_Info');
+            $table->string('Election_id');
             $table->timestamps();
         });
     }
