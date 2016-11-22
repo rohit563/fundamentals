@@ -15,10 +15,10 @@
                 //loop through to add the number of fields specified
                 for (i=1;i<=num;i++) {
                     //concatinate number of fields to a variable
-                    html += '<label class="col-md-4 control-label for="Candidate[' + i + '][Candidate_Name]"">Candidate ' + i + '</label><div class="col-md-6"><input type="text" name="Candidate[' + i + '][Candidate_Name]" id ="Candidate[' + i + '][Candidate_Name]" class="form-control"/></div>'; 
-                    html += '<label class="col-md-4 control-label for="Candidate[' + i + '][Age]"">Age</label><div class="col-md-6"><input type="text" name=""Candidate[' + i + '][Age]" id="Candidate[' + i + '][Age]" class="form-control"/></div>';
-                    html += '<label class="col-md-4 control-label for="Candidate[' + i + '][Political_Party]"">Political Party</label><div class="col-md-6"><div class="col-md-6" style = "margin-top:.5em;"><select id="Candidate[' + i + '][Political_Party]" name="Candidate[' + i + '][Political_Party]"><option value="0">- SELECT -</option><option value="1">Republican</option><option value="2">Democratic</option><option value="3">Other</option></select></div></div>';
-                    html += '<label class="col-md-4 control-label for="Candidate[' + i + '][Candidate_Info]"">Candidate Info</label><div class="col-md-6"><input type="text" name="Candidate[' + i + '][Candidate_Info" id="Candidate[' + i + '][Candidate_Info" class="form-control"/></div><br>';
+                    html += '<label class="col-md-4 control-label for="Candidate_Name[]"">Candidate ' + i + '</label><div class="col-md-6"><input type="text" name="Candidate_Name[]" id ="Candidate_Name[]" class="form-control" value =""/></div>'; 
+                    html += '<label class="col-md-4 control-label for="Age[]"">Age</label><div class="col-md-6"><input type="text" name="Age[]" id="Age[]" class="form-control"/></div>';
+                    html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6"><div class="col-md-6" style = "margin-top:.5em;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="1">Republican</option><option value="2">Democratic</option><option value="3">Other</option></select></div></div>';
+                    html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control"/></div><br>';
                 }
 
                 //insert this html code into the div with id catList

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+// use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use DB;
 use App\Election;
@@ -24,16 +24,23 @@ class ElectionsController extends Controller
         ]);
         
         // // Candidate Creation
-        
-        $this->validate($request->all(), [
+        // foreach($candidates as $candidate)
+        // {
+        //  if(!empty($candidate))
+        //   {     
+        //     $add=new Cand();   //Item is the model
+        //     $add->name=$item;  //saving item to name column
+        //     $add->save();       
+        //   }
+        // }
+        $this->validate($request, array(
             'Candidate_Name' => 'Required',
             'Age'=>             'Required',
             'Political_Party' => 'Required',
             'Candidate_Info' => 'Required',
-        ]);
-        
+        ));
         Candidate::create($request->all());
-        Election::create($request->only(['Name', 'Election_info','Date','Election_Type']));
+        Election::create($request->only(['Candidate_Name', 'Election_info','Date','Election_Type']));
         
         return redirect()->back()->with('message','Election and Candidates created successfully');
     }
