@@ -38,6 +38,7 @@ class ElectionsController extends Controller
             
             $candidate = new Candidate();
             $candidate->Candidate_Name = $request->Candidate_Name[$i];
+            $candidate->Position = $request->Position[$i];
             $candidate->Age = $request->Age[$i];
             $candidate->Political_Party = $request->Political_Party[$i];
             $candidate->Candidate_Info = $request->Candidate_Info[$i];

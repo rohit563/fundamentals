@@ -48,15 +48,17 @@
                                 <div class="col-md-6">
                                     <input type="text" name="Candidate_Name[]" id="Candidate_Name[]" class="form-control" value ="{{$candidate->Candidate_Name}}" readonly>
                                 </div>
+                                <label class="col-md-4 control-label for="Position[]"">Position</label>
+                                <div class="col-md-6">
+                                        <h5>{{$candidate->Position}}</h5>
+                                    </div>
                                 <label class="col-md-4 control-label for="Age[]"">Age</label>
                                     <div class="col-md-6">
                                         <input type="text" name="Age[]" id="Age[]" class="form-control" value ="{{$candidate->Age}}" readonly>
                                     </div>
                                 <label class="col-md-4 control-label for="Political_Party[]"">Political Party</label>
                                     <div class="col-md-6">
-                                        <div class="col-md-6">
-                                            <h5>{{$candidate->Political_Party}}</h5>
-                                        </div>
+                                        <h5>{{$candidate->Political_Party}}</h5>
                                     </div>
                                 <label class="col-md-4 control-label for="Candidate_Info[]"">Candidate {{$key+1}} Info</label>
                                 <div class="col-md-6">

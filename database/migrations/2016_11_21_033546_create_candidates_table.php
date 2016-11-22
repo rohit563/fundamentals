@@ -15,6 +15,7 @@ class CreateCandidatesTable extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Candidate_Name');
+            $table->string('Position');
             $table->string('Age');
             $table->string('Political_Party');
             $table->string('Candidate_Info');
