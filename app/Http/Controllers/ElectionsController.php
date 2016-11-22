@@ -60,6 +60,7 @@ class ElectionsController extends Controller
     public function show($id)
     {
         $election = Election::find($id);
-        return view('election.show',compact('election'));
+        $candidates = Candidate::where('Election_id',$election->id)->get();
+        return view('election.show',compact('election','candidates'));
     }
 }
