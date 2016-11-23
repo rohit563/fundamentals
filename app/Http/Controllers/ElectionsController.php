@@ -10,9 +10,31 @@ use App\Candidate;
 
 class ElectionsController extends Controller
 {
+    private $Election_ID;
     protected function create()
     {
         return view('election.create');
+    }
+    public function update (Request $request,$id)
+    { 
+        //Todo FIX Saving to Database Here
+        $election = Election::find($id);
+        $election->Name = $request-> Name;
+        $election->save();
+        // $election 
+        // $c = count($request->Candidate_Name);
+        
+        // for($i=0;$i<$c;$i++){
+        //     $candidate= Candidate::where('Election_id',$election->id);
+        //     $candidate->Candidate_Name = $request->Candidate_Name[$i];
+        //     $candidate->Position = $request->Position[$i];
+        //     $candidate->Age = $request->Age[$i];
+        //     $candidate->Political_Party = $request->Political_Party[$i];
+        //     $candidate->Candidate_Info = $request->Candidate_Info[$i];
+        //     $candidate->Election_id = $election->id;
+        //     $candidate->save();
+        // }
+         return back()->with('message', 'Election and Candidates Updated Successfully.');
     }
     public function store(Request $request)
     {
