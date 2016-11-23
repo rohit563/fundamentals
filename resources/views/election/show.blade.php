@@ -1,5 +1,3 @@
-<!--<h1 align="Center">Test Election</h1>-->
-<!--<h2 align="Center">Election Name: {{$election->Name}}</h2>-->
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -18,8 +16,13 @@
                 <!--<input type="hidden" name="_method" value="POST">-->
                         <div>
                             <label for="name" class="col-md-4 control-label">Election Name</label>
-                            <div class="col-md-6">
+                            <div class="col-md-6 {{ $errors->has('Name') ? ' has-error' : '' }}">
                                 <input id="Name" type="Text" class="form-control" name="Name" value ="{{$election->Name}}" readonly>
+                                @if ($errors->has('Name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('Name') }}</strong>
+                                        </span>
+                                    @endif
                             </div>
                         </div>
                          <div>

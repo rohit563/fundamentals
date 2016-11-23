@@ -35,7 +35,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form</div>
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form" method="post" action="{{ url('/election') }}">
+                     <form class="form-horizontal" role="form" method="post" action="{{ url('/election/create') }}">
                         {{ csrf_field() }}
                         @if (Session::has('message'))
                             <div class="alert alert-success">

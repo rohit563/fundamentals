@@ -28,10 +28,12 @@ Route::resource('users','usercontroller');
 // Route::resource('users','AuthController');
 
 Route::get('/election','ElectionsController@index');
-Route::post('/election','ElectionsController@store');
+Route::post('/election/create','ElectionsController@store');
+Route::post('/election','ElectionsController@create');
 Route::get('/election/{id}','ElectionsController@show');
 Route::resource('election','ElectionsController');
 Route::resource('candidate','ElectionsController');
+Route::resource('election','ManagerController');
 // Route::get('protected', ['middleware' => ['auth', 'manager'], function() {
 //     return "this page requires that you be logged in and a Manager";
 // }]);

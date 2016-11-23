@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Election;
 
 class ManagerController extends Controller
 {
@@ -26,6 +27,10 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        return view('manager');
+        $elections = Election::all();
+        $count = $elections->count();
+        return view('manager',compact('elections','count'));
+        // return view('manager');
     }
+    
 }

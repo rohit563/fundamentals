@@ -10,9 +10,9 @@ use App\Candidate;
 
 class ElectionsController extends Controller
 {
-    protected function create(array $data)
+    protected function create()
     {
-        return view('election.show');
+        return view('election.create');
     }
     public function store(Request $request)
     {
@@ -61,7 +61,14 @@ class ElectionsController extends Controller
     public function show($id)
     {
         $election = Election::find($id);
-        $candidates = Candidate::where('Election_id',$election->id)->get();
-        return view('election.show',compact('election','candidates'));
+        if(!empty($election))
+        {
+            //$candidates = Candidate::where('Election_id',$election->id)->get();
+            $candidates = Candidate::all();
+            return view('election.show',compact('election','candidates'));}
+        else
+        { 
+            return view('election.create');
+        }
     }
 }
