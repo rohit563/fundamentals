@@ -63,8 +63,8 @@ class ElectionsController extends Controller
         $election = Election::find($id);
         if(!empty($election))
         {
-            //$candidates = Candidate::where('Election_id',$election->id)->get();
-            $candidates = Candidate::all();
+            $candidates = Candidate::where('Election_id',$election->id)->cursor();
+            // $candidates = Candidate::all();
             return view('election.show',compact('election','candidates'));}
         else
         { 

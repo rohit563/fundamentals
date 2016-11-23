@@ -16,10 +16,9 @@
         <form class="form-horizontal" role="form" method="get" action="{{ url('/election/create') }}">
         <button type = "submit" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
         </form>
-        <!--<button type = "button" onclick="window.location = 'election/create';"  class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>-->
     </div>
     
-        <div class="col-md-2 col-md-offset-1">
+        <div class="col-md-3 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">National Elections</div>
                 <div class="panel-body">
@@ -35,29 +34,35 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-4 col-md-offset-.75">
             <div class="panel panel-default">
-                <div class="panel-heading">State Elections</div>
-
+                <div style ="text-align:center;" class="panel-heading">State Elections</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/2') }}">
-                        <button type="submit" class="btn btn-primary" value = "View Elections" text-align = "center">
+                    @foreach($elections->where('Election_Type','State') as $key=>$election)
+                    <h5 style = "background-color:#f5f5f5;" align = "center">Election: {{$election->Name}}</h5>
+                    <h5 style = "word-wrap: break-word;">Election info: {{$election->Election_info}}</h5>
+                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}" style ="margin:auto; display:block;">
+                        <button type="submit" class="btn btn-primary" value = "View Election" >
                         <i class="fa fa-btn fa-elections"></i> View Election 
                         </button>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-3 col-md-offset-.75">
             <div class="panel panel-default">
                 <div class="panel-heading">Local Elections</div>
-
                 <div class="panel-body">
-                   <form class="form-horizontal" role="form" method="get" action="{{ url('/election/3') }}">
-                        <button type="submit" class="btn btn-primary" value = "View Elections" text-align = "center">
+                    @foreach($elections->where('Election_Type','Local') as $key=>$election)
+                    <h5 style = "background-color:#f5f5f5;" align = "center">Election: {{$election->Name}}</h5>
+                    <h5 style = "word-wrap: break-word;">Election info: {{$election->Election_info}}</h5>
+                    <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                        <button type="submit" class="btn btn-primary" value = "View Election" text-align = "center">
                         <i class="fa fa-btn fa-elections"></i> View Election 
                         </button>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>
