@@ -84,14 +84,14 @@
                 @endif 
                     </div></div>
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form">
+                     <form class="form-horizontal" role="form" method="POST" action= "{{url('/election/'.$election->id)}}">
                         {{ csrf_field() }}
                         @if (Session::has('message'))
                             <div class="alert alert-success">
                                 <p>{{ Session::get('message') }}</p>
                             </div>
                         @endif
-                <!--<input type="hidden" name="_method" value="POST">-->
+                <input type="hidden" name="_method" value="PUT">
                         <div>
                             <label for="Name" class="col-md-4 control-label">Election Name</label>
                             <div class="col-md-6 {{ $errors->has('Name') ? ' has-error' : '' }}">
@@ -131,7 +131,7 @@
                                 </div>
                                 <label class="col-md-4 control-label for="Position"">Position</label>
                                 <div class="col-md-6">
-                                        <h5>{{$candidate->Position}}</h5>
+                                        <h5 name="Position">{{$candidate->Position}}</h5>
                                     </div>
                                 <label class="col-md-4 control-label for="Age"">Age</label>
                                     <div class="col-md-6">
@@ -139,7 +139,7 @@
                                     </div>
                                 <label class="col-md-4 control-label for="Political_Party"">Political Party</label>
                                     <div class="col-md-6">
-                                        <h5>{{$candidate->Political_Party}}</h5>
+                                        <h5 name= "Political_Party">{{$candidate->Political_Party}}</h5>
                                     </div>
                                 <label class="col-md-4 control-label for="Candidate_Info"">Candidate {{$key+1}} Info</label>
                                 <div class="col-md-6">
@@ -150,9 +150,11 @@
                             </div>
                     </form>        
                             <div class="col-md-6 col-md-offset-4 ">
-                                <button id="submit" type="submit" class="btn btn-primary" style="display:none;">
+                                <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">-->
+                                <button id="submit" type="submit"class="btn btn-primary" style="display:none;">
                                     <i class="fa fa-btn fa-user"></i> Update
                                 </button>
+                                <!--</form>-->
                                 <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/'.Auth::user()->type) }}">-->
                                 <form class="form-horizontal" role="form" method="get" action="{{ url('/') }}">
                                 <button type="submit" class="btn btn-primary" value = "View Elections" id = "back">

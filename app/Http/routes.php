@@ -29,10 +29,10 @@ Route::get('/user', 'usercontroller@view');
 // Route::resource('users','AuthController');
 
 Route::get('/election','ElectionsController@index');
-Route::post('/election/create','ElectionsController@store');
-Route::post('/election','ElectionsController@create');
+Route::get('/election/ ','ElectionsController@store');
+// Route::post('/election','ElectionsController@create');
 Route::get('/election/{id}','ElectionsController@show');
-Route::put('/election/{id}','ElectionController@update');
+Route::put('/election/{id}','ElectionsController@update');
 Route::resource('election','ElectionsController');
 Route::resource('candidate','ElectionsController');
 Route::resource('election','ManagerController');
