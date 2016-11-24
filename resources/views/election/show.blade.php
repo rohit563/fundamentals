@@ -4,7 +4,40 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Election Form</div>
+                <div class="panel-heading">Election Form
+                    <div style="float:right;" align="left">
+                    
+                    
+                    </div>
+                    <div style="float:right;" align="right">
+                        <a id="edit" onclick="edit();" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a id="cancel" style="display: none;" onclick="cancel()" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                        <script type="text/javascript">
+                            function edit() {
+                                document.getElementById("edit").style.display = "none";
+                                document.getElementById("cancel").style.display = "block";
+                                document.getElementById("submit").style.display = "block";
+                                var inputs = document.getElementsByTagName('input');
+                                for (var i = 0; i < inputs.length; i += 1) {
+                                    inputs[i].readOnly = false;
+                                }
+
+                            }
+                            function cancel() {
+                            	document.getElementById("cancel").style.display = "none";
+                                document.getElementById("edit").style.display = "block";
+                                document.getElementById("submit").style.display = "none";
+                                
+                                var inputs = document.getElementsByTagName('input');
+                                for (var i = 0; i < inputs.length; i += 1) {
+                                    inputs[i].readOnly = true;
+                                }
+                            }
+                            
+                        </script>
+                    </div>
+                
+                </div>
                 <div class="panel-body">
                      <form class="form-horizontal" role="form" method="POST" action= "{{url('/election/'.$election->id)}}">
                         {{ csrf_field() }}
@@ -70,19 +103,27 @@
                                     <br>
                                 @endforeach
                             </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <br>
+                                    <button id="submit" type="submit" class="btn btn-primary" style="display: none;">
+                                        <i class="fa fa-btn fa-user"></i> Update
+                                    </button>
+                                </div>
+                            </div>
                     </form>        
                             <div class="col-md-6 col-md-offset-4 ">
                                 <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">-->
-                                <button id="submit" type="submit"class="btn btn-primary" style="display:none;">
-                                    <i class="fa fa-btn fa-user"></i> Update
-                                </button>
+                                <!--<button id="submit" type="submit"class="btn btn-primary" style="display:none;">-->
+                                <!--    <i class="fa fa-btn fa-user"></i> Update-->
+                                <!--</button>-->
                                 <!--</form>-->
                                 <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/'.Auth::user()->type) }}">-->
-                                <form class="form-horizontal" role="form" method="get" action="{{ url('/') }}">
-                                <button type="submit" class="btn btn-primary" value = "View Elections" id = "back">
-                                <i class="fa fa-btn fa-elections"></i> Back to All Elections 
-                                </button>
-                            </form>
+                            <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/') }}">-->
+                            <!--    <button type="submit" class="btn btn-primary" value = "View Elections" id = "back">-->
+                            <!--    <i class="fa fa-btn fa-elections"></i> Back to All Elections -->
+                            <!--    </button>-->
+                            <!--</form>-->
                         </div>
                     </div>
             </div>
