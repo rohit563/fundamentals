@@ -30,12 +30,13 @@ Route::get('/user', 'usercontroller@view');
 
 Route::get('/election','ElectionsController@index');
 Route::post('/election','ElectionsController@store');
-Route::post('/election','ElectionsController@create');
+// Route::post('/election','ElectionsController@create');
 Route::get('/election/{id}','ElectionsController@show');
 Route::put('/election/{id}','ElectionsController@update');
+
 Route::resource('election','ElectionsController');
 Route::resource('candidate','ElectionsController');
-Route::resource('election','ManagerController');
+// Route::resource('election','ManagerController');
 
 
 Route::get('/user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');

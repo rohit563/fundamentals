@@ -11,10 +11,10 @@ use App\Candidate;
 class ElectionsController extends Controller
 {
     private $Election_ID;
-    protected function create()
-    {
-        return view('election.create');
-    }
+    // protected function create()
+    // {
+    //     return view('election.create');
+    // }
     public function update (Request $request)
     { 
         //Todo FIX Saving to Database Here

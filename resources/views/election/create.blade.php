@@ -35,14 +35,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form</div>
                 <div class="panel-body">
-                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/election/create') }}">
+                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/election') }}">
                         {{ csrf_field() }}
                         @if (Session::has('message'))
                             <div class="alert alert-success">
                                 <p>{{ Session::get('message') }}</p>
                             </div>
                         @endif
-                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_method" value="POST">
     
                             <div>
                                 <label for="name" class="col-md-4 control-label">Election Name</label>
