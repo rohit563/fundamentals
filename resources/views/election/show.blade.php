@@ -71,7 +71,6 @@
                                 @endforeach
                             </div>
                     </form>        
-<<<<<<< HEAD
                             <div class="col-md-6 col-md-offset-4 ">
                                 <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">-->
                                 <button id="submit" type="submit"class="btn btn-primary" style="display:none;">
@@ -81,10 +80,6 @@
                                 <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/'.Auth::user()->type) }}">-->
                                 <form class="form-horizontal" role="form" method="get" action="{{ url('/') }}">
                                 <button type="submit" class="btn btn-primary" value = "View Elections" id = "back">
-=======
-                            <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}" align = "center">
-                                <button type="submit" class="btn btn-primary" value = "View Elections" style = "margin-top:20px;">
->>>>>>> parent of 70c293d... User can't edit /update elections, as it should be. Editing and updating them through manager doesn't work though
                                 <i class="fa fa-btn fa-elections"></i> Back to All Elections 
                                 </button>
                             </form>
