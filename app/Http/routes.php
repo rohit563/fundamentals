@@ -25,14 +25,16 @@ Route::get('/add', 'AddController@index');
 Route::get('/profile', 'usercontroller@index');
 Route::put('/profile','usercontroller@update');
 Route::resource('users','usercontroller');
-Route::get('/user', 'usercontroller@view');
 // Route::resource('users','AuthController');
 
 Route::get('/election','ElectionsController@index');
 Route::get('/election/ ','ElectionsController@store');
 // Route::post('/election','ElectionsController@create');
 Route::get('/election/{id}','ElectionsController@show');
+<<<<<<< HEAD
 Route::put('/election/{id}','ElectionsController@update');
+=======
+>>>>>>> parent of 70c293d... User can't edit /update elections, as it should be. Editing and updating them through manager doesn't work though
 Route::resource('election','ElectionsController');
 Route::resource('candidate','ElectionsController');
 Route::resource('election','ManagerController');
