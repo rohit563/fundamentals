@@ -32,13 +32,13 @@ class ElectionsController extends Controller
         
         // for($i=0;$i<$c;$i++){
         // $candidates= Candidate::where('Election_id',$election->id)->cursor();
-        foreach($candidates as $candidate)
+        foreach($candidates as $i=>$candidate)
         {
-            $candidate->Candidate_Name = $request->Candidate_Name;
-            $candidate->Position = $candidate->Position;
-            $candidate->Age = $request->Age;
-            $candidate->Political_Party = $candidate->Political_Party;
-            $candidate->Candidate_Info = $request->Candidate_Info;
+            $candidate->Candidate_Name = $request->Candidate_Name[$i];
+            // $candidate->Position = $candidate->Position[$i]; Add later
+            $candidate->Age = $request->Age[$i];
+            // $candidate->Political_Party = $candidate->Political_Party[$i]; //Add later
+            $candidate->Candidate_Info = $request->Candidate_Info[$i];
             $candidate->Election_id = $election->id;
             $candidate->save();
         }
