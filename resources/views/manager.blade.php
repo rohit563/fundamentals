@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+table, th, td {
+   border: 1px solid black;
+   padding:.25em;
+}
+th {
+    background-color: #0086b3;
+    color: white;
+}
+tr:nth-child(even) {background-color: #f2f2f2}
+</style>
 <div class="container">
     <div class="row">
         
@@ -18,11 +29,10 @@
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                @foreach($elections->where('Election_Type','National') as $key=>$election)
+                                @foreach($elections->where('Election_Type','National') as $election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
                                     <td>{{$election->Election_info}}</td>
-                                    </td>
                                     <td>
                                         <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
                                             <div class="text-center">
@@ -41,7 +51,7 @@
                     
                     <div class="col-md-10 col-md-offset-1">
                         <div class="panel panel-default">
-                            <div style ="text-align:center;" class="panel-heading">State Elections</div>
+                            <div class="panel-heading">State Elections</div>
                             <div class="panel-body" style = "text-align:center">
                                 <table style="margin: 0 auto; width:100%;text-align:center">
                                     <th style = "text-align:center">Election Name</th>
