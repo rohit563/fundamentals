@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Election;
+
+use App\Candidate;
+
+use Carbon\Carbon;
+
 class AdminController extends Controller
 {
     //
@@ -19,13 +25,19 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // /**
+    //  * Show the application dashboard.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
     public function index()
     {
-        return view('admin');
+        $elections = Election::all();
+        $candidates = Candidate::all();
+        $count = $elections->count();
+        $ccount = $candidates->count();
+        $date = Carbon::now();
+        //printf("Now: %s", Carbon::now());
+        return view('admin',compact('elections','count','candidates','ccount','date'));
     }
 }

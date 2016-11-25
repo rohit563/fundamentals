@@ -6,7 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form
                     <div style="float:right;" align="right">
-                        @if(Auth::user()->type <= 2)
+                        @if(Auth::user()->type == 1)
                         <a id="edit" onclick="edit();" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                         <a id="cancel" style="display: none;" onclick="cancel()" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
                         @endif

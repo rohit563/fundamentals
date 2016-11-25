@@ -20,6 +20,7 @@ class CreateCandidatesTable extends Migration
             $table->string('Political_Party');
             $table->string('Candidate_Info');
             $table->string('Election_id');
+            $table->integer('Votes');
             $table->timestamps();
         });
     }
