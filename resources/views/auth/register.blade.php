@@ -239,7 +239,6 @@
                         
                         <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                             <label for="type" class="col-md-4 control-label">Manager Code</label>
-
                             <div class="col-md-6">
                                 <input id="type1" type="type1" class="form-control" name="type1" value="{{ old('type') }}" onkeyup="validateNumber()" onclick="validateNumber()" onchange="validateNumber()">
                                 <input id="type" type="hidden" class="form-control" name="type" value="3">

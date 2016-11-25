@@ -1,6 +1,41 @@
 @extends('layouts.app')
-
 @section('content')
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+// Create two variable with the names of the months and days in an array
+var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
+var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+// Create a newDate() object
+var newDate = new Date();
+// Extract the current date from Date object
+newDate.setDate(newDate.getDate());
+// Output the day, date, month and year   
+$('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+setInterval( function() {
+	// Create a newDate() object and extract the seconds of the current time on the visitor's
+	var seconds = new Date().getSeconds();
+	// Add a leading zero to seconds value
+	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+	},1000);
+	
+setInterval( function() {
+	// Create a newDate() object and extract the minutes of the current time on the visitor's
+	var minutes = new Date().getMinutes();
+	// Add a leading zero to the minutes value
+	$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+    },1000);
+	
+setInterval( function() {
+	// Create a newDate() object and extract the hours of the current time on the visitor's
+	var hours = new Date().getHours();
+	// Add a leading zero to the hours value
+	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+    }, 1000);	
+});
+</script>
 <style>
 table, th, td {
    border: 1px solid black;
@@ -19,6 +54,19 @@ tr:nth-child(even) {background-color: #f2f2f2}
             <div class="panel panel-default">
                 <div class="panel-heading">Manager Dashboard</div>
                 <div class="panel-body">
+                    <div class="clock">
+                    <div id="Date"></div>
+                      <table style="border:none">
+                          <tr style="border:none">
+                              <td id="hours"  style="border:none">:</td>
+                              <td id="point"  style="border:none; padding:none;">:</td>
+                              <td id="min" style="border:none; padding:none;"></td>
+                              <td id="point" style="border:none; padding:none;">:</td>
+                              <td id="sec" style="border:none;padding:none;"></td>
+                          </tr>
+                      </table>
+                    </div>
+                    <h5 >Time: {{$date}} </h5>
                     <h5 style = "text-align:center;">Total Elections Count: {{$count}}</h5>
                     <h5 style = "text-align:center;">Total Candidates Count: {{$ccount}}</h5>
                     <div class="col-md-10 col-md-offset-1 ">

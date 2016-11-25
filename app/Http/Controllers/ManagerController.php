@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Election;
 use App\Candidate;
+use Carbon\Carbon;
 
 class ManagerController extends Controller
 {
@@ -32,7 +33,9 @@ class ManagerController extends Controller
         $candidates = Candidate::all();
         $count = $elections->count();
         $ccount = $candidates->count();
-        return view('manager',compact('elections','count','candidates','ccount'));
+        $date = Carbon::now();
+        //printf("Now: %s", Carbon::now());
+        return view('manager',compact('elections','count','candidates','ccount','date'));
         // return view('manager');
     }
     
