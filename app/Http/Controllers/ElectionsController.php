@@ -10,16 +10,8 @@ use App\Candidate;
 
 class ElectionsController extends Controller
 {
-    private $Election_ID;
-    // protected function create()
-    // {
-    //     return view('election.create');
-    // }
-    // Request $request
     public function update(Request $request,$id)
     { 
-        //Todo FIX Saving to Database Here
-        // $election = Election::find($request->Election_id);
         $election = Election::find($id);
         $election->Name = $request->Name;
         $election->Election_info= $request->Election_info;
@@ -29,9 +21,6 @@ class ElectionsController extends Controller
 
         $candidates= Candidate::where('Election_id',$election->id)->get();
         $c = count($candidates);
-        
-        // for($i=0;$i<$c;$i++){
-        // $candidates= Candidate::where('Election_id',$election->id)->cursor();
         foreach($candidates as $i=>$candidate)
         {
             $candidate->Candidate_Name = $request->Candidate_Name[$i];
@@ -46,22 +35,12 @@ class ElectionsController extends Controller
     }
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'Name' =>           'Required',
-        //     'Election_info'=>   'Required',
-        //     'Date' =>           'Required|Date',
-        //     'Election_Type' =>  'Required'
-        // ]);
-    
         $election = new Election();
         $election->Name = $request->Name;
         $election->Election_info = $request->Election_info;
         $election-> Date = $request->Date;
         $election->Election_Type = $request->Election_Type;
         $election->save();
-        
-        
-        // Election::create($request->only(['Name', 'Election_info','Date','Election_Type']));
         //Dynamic Candidate Creation
         $c = count($request->Candidate_Name);
         for($i=0;$i<$c;$i++){
@@ -94,7 +73,6 @@ class ElectionsController extends Controller
         if(!empty($election))
         {
             $candidates = Candidate::where('Election_id',$election->id)->cursor();
-            // $candidates = Candidate::all();
             return view('election.show',compact('election','candidates'));}
         else
         { 
