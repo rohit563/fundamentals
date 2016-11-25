@@ -5,13 +5,11 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form
-                    <div style="float:right;" align="left">
-                    
-                    
-                    </div>
                     <div style="float:right;" align="right">
+                        @if(Auth::user()->type <= 2)
                         <a id="edit" onclick="edit();" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                         <a id="cancel" style="display: none;" onclick="cancel()" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+                        @endif
                         <script type="text/javascript">
                             function edit() {
                                 document.getElementById("edit").style.display = "none";
