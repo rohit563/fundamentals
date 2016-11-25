@@ -22,17 +22,23 @@ class ElectionsController extends Controller
         // $election = Election::find($request->Election_id);
         $election = Election::find($id);
         $election->Name = $request->Name;
+        $election->Election_info= $request->Election_info;
+        $election->Date = $request->Date;
         $election->save();
-        // $election 
-        $c = count($request->Candidate_Name);
+
+
+        $candidates= Candidate::where('Election_id',$election->id)->get();
+        $c = count($candidates);
         
-        for($i=0;$i<$c;$i++){
-            $candidate= Candidate::where('Election_id',$id);
-            $candidate->Candidate_Name = $request->Candidate_Name[$i];
-            $candidate->Position = $request->Position[$i];
-            $candidate->Age = $request->Age[$i];
-            $candidate->Political_Party = $request->Political_Party[$i];
-            $candidate->Candidate_Info = $request->Candidate_Info[$i];
+        // for($i=0;$i<$c;$i++){
+        // $candidates= Candidate::where('Election_id',$election->id)->cursor();
+        foreach($candidates as $candidate)
+        {
+            $candidate->Candidate_Name = $request->Candidate_Name;
+            $candidate->Position = $candidate->Position;
+            $candidate->Age = $request->Age;
+            $candidate->Political_Party = $candidate->Political_Party;
+            $candidate->Candidate_Info = $request->Candidate_Info;
             $candidate->Election_id = $election->id;
             $candidate->save();
         }
