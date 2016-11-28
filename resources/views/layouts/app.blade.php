@@ -52,6 +52,8 @@
                             <li><a href="{{ url('/admin') }}">Dashboard</a></li>
                         @elseif (Auth::user()->type == 2)
                             <li><a href="{{ url('/manager') }}">Dashboard</a></li>
+                        @elseif (Auth::user()->type == 3)
+                        <li><a href="{{ url('/user') }}">Dashboard</a></li>
                         @else
                             <li><a href="{{ url('/home') }}">Dashboard</a></li>
                         @endif

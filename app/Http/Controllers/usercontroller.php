@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Auth;
 
 use Illuminate\Support\Facades\Input;
+use App\Election;
+use App\Candidate;
 
 class usercontroller extends Controller
 {
@@ -69,5 +71,13 @@ class usercontroller extends Controller
         
 
         // return View::make('users.index', compact('users'));
+    }
+    public function view()
+    {
+        $elections = Election::all();
+        $candidates = Candidate::all();
+        $count = $elections->count();
+        $ccount = $candidates->count();
+        return view('user',compact('elections','candidates','count','ccount'));
     }
 }

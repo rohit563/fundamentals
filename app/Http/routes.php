@@ -19,23 +19,33 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/manager', 'ManagerController@index');
-Route::get('/admin', 'AdminController@index');
+
+
 Route::get('/add', 'AddController@index');
 Route::get('/profile', 'usercontroller@index');
 Route::put('/profile','usercontroller@update');
 Route::resource('users','usercontroller');
 Route::get('/user', 'usercontroller@view');
-// Route::resource('users','AuthController');
-
-Route::get('/election','ElectionsController@index');
-Route::post('/election','ElectionsController@store');
-// Route::post('/election','ElectionsController@create');
 Route::get('/election/{id}','ElectionsController@show');
-Route::put('/election/{id}','ElectionsController@update');
+// Route::resource('users','AuthController');
+Route::get('/results','ElectionsController@results');
+Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function()
+{
+    Route::get('/manager', 'ManagerController@index');
+});
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+    Route::get('/admin', 'AdminController@index');
+    Route::get('/election','ElectionsController@index');
+    Route::post('/election','ElectionsController@store');
+    // Route::post('/election','ElectionsController@create');
+  
+    Route::put('/election/{id}','ElectionsController@update');
+    
+    Route::resource('election','ElectionsController');
+    Route::resource('candidate','ElectionsController');
+});
 
-Route::resource('election','ElectionsController');
-Route::resource('candidate','ElectionsController');
 // Route::resource('election','ManagerController');
 
 

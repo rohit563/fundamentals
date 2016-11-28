@@ -79,4 +79,14 @@ class ElectionsController extends Controller
             return view('election.create');
         }
     }
+    public function results()
+    {
+        $elections = Election::all();
+        $candidates = Candidate::all();
+        $count = $elections->count();
+        $ccount = $candidates->count();
+        // $elections = DB::table('elections')->get();
+        // $candidates = DB::table('candidates')->get();
+        return view('election.results',compact('elections','candidates','ccount','count'));
+    }
 }

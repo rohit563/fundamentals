@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<style>#precinct{display:none;}</style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
     <script type="text/javascript">
         //when the webpage has loaded do this
         $(document).ready(function() {  
             //if the value within the dropdown box has changed then run this code            
             $('#num_cand').change(function(){
+                
                 //get the number of fields required from the dropdown box
                 var num = $('#num_cand').val();                  
 
@@ -23,12 +25,27 @@
                     html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6" style = "margin:.5em;margin-left:-.073em;;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="Republican">Republican</option><option value="Democratic">Democratic</option><option value="Other">Other</option></select></div>';
                     html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate ' + i + ' Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control" value=""/></div>';
                 }
-
+                
                 //insert this html code into the div with id catList
                 $('#candidateList').html(html);
             });
         }); 
     </script>
+    <script type="text/javascript">
+        //when the webpage has loaded do this
+        $(document).ready(function() {  
+            //if the value within the dropdown box has changed then run this code            
+            $('#Election_Type').change(function(){
+                if ($('select[name=Election_Type]').val() == 'Local'){
+                $('#precinct').show();
+                 }
+                else{
+                $('#precinct').hide();
+                } 
+            });
+        }); 
+    </script>
+     
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -77,7 +94,11 @@
                                 </select>
                                 </div>
                             </div>
-                            <div >
+                            <div id="precinct">
+                                 <label for="PrecinctLabel" class="col-md-4 control-label">Assign Manager to Precinct:</label>
+                                 <div class="col-md-6"><input name="Precinct" type="text" placeholder="Precinct" size="50" class="form-control"/></div>
+                            </div>
+                            <div>
                             <label for="Number_of-Candidates" class="col-md-4 control-label">Number of Candidates</label>
     
                             <div class="col-md-6" style = "margin-top:.5em;">
@@ -92,6 +113,7 @@
                                 </select>
                             </div>
                             <div id="candidateList"></div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4" align = "center" style = "margin-top:.2em;margin-bottom:.2em;">
                                     <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center"
