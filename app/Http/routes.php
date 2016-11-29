@@ -27,6 +27,7 @@ Route::put('/profile','usercontroller@update');
 Route::resource('users','usercontroller');
 Route::get('/user', 'usercontroller@view');
 Route::get('/election/{id}','ElectionsController@show');
+Route::get('/election/{id}/vote','ElectionsController@vote');
 // Route::resource('users','AuthController');
 Route::get('/results','ElectionsController@results');
 Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function()

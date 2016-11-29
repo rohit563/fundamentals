@@ -50,7 +50,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                         </form>
                                     </td>
                                     <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id.'/vote') }}">
                                             <div class="text-center">
                                             <button type="submit" class="btn btn-danger" value = "Vote">
                                             <i class="fa fa-btn fa-elections"></i> Vote 

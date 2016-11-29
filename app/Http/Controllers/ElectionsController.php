@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use DB;
 use App\Election;
 use App\Candidate;
+use App\Vote;
 
 class ElectionsController extends Controller
 {
@@ -72,7 +73,7 @@ class ElectionsController extends Controller
         $election = Election::find($id);
         if(!empty($election))
         {
-            $candidates = Candidate::where('Election_id',$election->id)->cursor();
+            $candidates = Candidate::where('Election_id',$id)->cursor();
             return view('election.show',compact('election','candidates'));}
         else
         { 
@@ -88,5 +89,17 @@ class ElectionsController extends Controller
         // $elections = DB::table('elections')->get();
         // $candidates = DB::table('candidates')->get();
         return view('election.results',compact('elections','candidates','ccount','count'));
+    }
+    public function vote($id)
+    {
+        $election = Election::find($id);
+        if(!empty($election))
+        {
+            $candidates = Candidate::where('Election_id',$id)->cursor();
+            // return view('election.show',compact('election','candidates'));
+            return view('election.vote',compact('election','candidates'));
+            
+        }
+        
     }
 }

@@ -28,19 +28,16 @@ class CreateUsersTable extends Migration
             $table->string('zip');
             $table->date('dob');
             $table->integer('type');
+            $table->string('precinctID');
             $table->rememberToken();
             $table->timestamps();
         });
         
-        DB::table('users')->insert( array(
-            'email' => 'nrtester1@gmail.com',
-            
-            
-            
-            'type' => '1',
-            
-            
-        ));
+        // DB::table('users')->insert( array(
+        //     'email' => 'nrtester1@gmail.com',
+        //     'password' => '$2y$10$OpD.V7qSmceiMO4d/Z8rXORQqoLRj8xpa8JgSmIdxoOp5e06Wv1z.',
+        //     'type' => 1,
+        // ));
     }
 
     /**

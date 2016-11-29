@@ -37,10 +37,16 @@
             //if the value within the dropdown box has changed then run this code            
             $('#Election_Type').change(function(){
                 if ($('select[name=Election_Type]').val() == 'Local'){
-                $('#precinct').show();
+                    $('#precinct').show();
+                    $('#State').show();
                  }
+                else if ($('select[name=Election_Type]').val() == 'State'){
+                    $('#precinct').show();
+                    $('#State').show();
+                }
                 else{
-                $('#precinct').hide();
+                    $('#precinct').hide();
+                    $('#State').hide();
                 } 
             });
         }); 
@@ -92,6 +98,17 @@
                                     <option value="State">State</option>
                                     <option value="Local">Local</option>
                                 </select>
+                                </div>
+                            </div>
+                            <div id ="State">
+                                <label for="StateLabel" class="col-md-4 control-label">State</label>
+                                <div class="col-md-6" style = "margin:.5em;margin-left:-.073em;">
+                                    <select id="State" name="State">
+                                        <option value="0">- SELECT -</option>
+                                        <option value="Idaho">Idaho</option>
+                                        <option value="Washington">Washington</option>
+                                        <option value="Wyoming">Wyoming</option>
+                                    </select>
                                 </div>
                             </div>
                             <div id="precinct">

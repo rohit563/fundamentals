@@ -14,9 +14,33 @@ class CreatePrecinctsTable extends Migration
     {
         Schema::create('precincts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('precintID')->unique();
+            $table->string('precinctID')->unique();
             $table->string('precinctState');
         });
+        DB::table('precincts')->insert( array(
+            'precinctID' => '1AW',
+            'precinctState' => 'Wyoming',
+        ));
+        DB::table('precincts')->insert( array(
+            'precinctID' => '1BW',
+            'precinctState' => 'Wyoming',
+        ));
+        DB::table('precincts')->insert( array(
+            'precinctID' => '1AI',
+            'precinctState' => 'Idaho',
+        ));
+        DB::table('precincts')->insert( array(
+            'precinctID' => '1BI',
+            'precinctState' => 'Idaho',
+        ));
+        DB::table('precincts')->insert( array(
+            'precinctID' => '1AWA',
+            'precinctState' => 'Washington',
+        ));
+        DB::table('precincts')->insert( array(
+            'precinctID' => '1BWA',
+            'precinctState' => 'Washington',
+        ));
     }
 
     /**
