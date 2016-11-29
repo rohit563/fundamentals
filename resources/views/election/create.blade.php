@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>#precinct{display:none;}</style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
     <script type="text/javascript">
         //when the webpage has loaded do this
@@ -34,6 +33,8 @@
     <script type="text/javascript">
         //when the webpage has loaded do this
         $(document).ready(function() {  
+             $('#precinct').hide();
+             $('#State').hide();
             //if the value within the dropdown box has changed then run this code            
             $('#Election_Type').change(function(){
                 if ($('select[name=Election_Type]').val() == 'Local'){
@@ -58,6 +59,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form</div>
                 <div class="panel-body">
+                    <!--<h5># of Precincts: {{$pcount}}</h5>-->
                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/election') }}">
                         {{ csrf_field() }}
                         @if (Session::has('message'))
@@ -113,24 +115,32 @@
                             </div>
                             <div id="precinct">
                                  <label for="PrecinctLabel" class="col-md-4 control-label">Assign Manager to Precinct:</label>
-                                 <div class="col-md-6"><input name="Precinct" type="text" placeholder="Precinct" size="50" class="form-control"/></div>
+                                 <div class="col-md-6"  style = "margin-top:.5em;">
+                                     <select id="precinctID" name="precinctID">
+                                        @foreach($precincts as $precinct)
+                                         <option value = "{{$precinct->precinctID}}">{{$precinct->precinctID}}</option>
+                                        @endforeach 
+                                    </select>     
+                                 </div>
                             </div>
+
                             <div>
-                            <label for="Number_of-Candidates" class="col-md-4 control-label">Number of Candidates</label>
-    
-                            <div class="col-md-6" style = "margin-top:.5em;">
-                                <select id="num_cand" name="num_cand">
-                                    <option value="0">- SELECT -</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                </select>
+                                <label for="Number_of-Candidates" class="col-md-4 control-label" >Number of Candidates</label>
+        
+                                <div class="col-md-6" style = "margin-top:.5em;">
+                                    <select id="num_cand" name="num_cand">
+                                        <option value="0">- SELECT -</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
                             </div>
                             <div id="candidateList"></div>
-                            </div>
+                            <!--</div>-->
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4" align = "center" style = "margin-top:.2em;margin-bottom:.2em;">
                                     <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center"

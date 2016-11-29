@@ -41,6 +41,9 @@ class ElectionsController extends Controller
         $election->Election_info = $request->Election_info;
         $election-> Date = $request->Date;
         $election->Election_Type = $request->Election_Type;
+        $election->State = $request->State;
+        $election->precinctID = $request->precinctID;
+        
         $election->save();
         //Dynamic Candidate Creation
         $c = count($request->Candidate_Name);
@@ -66,18 +69,22 @@ class ElectionsController extends Controller
     }
     public function index()
     {
-        return view('election.create');
+        $precincts = \DB::table('precincts')->get();
+        $pcount = count(precincts);
+        return view('election.create',compact('precincts','pcount'));
     }
     public function show($id)
     {
         $election = Election::find($id);
+        $precincts = \DB::table('precincts')->get();
+        $pcount = count($precincts);
         if(!empty($election))
         {
             $candidates = Candidate::where('Election_id',$id)->cursor();
-            return view('election.show',compact('election','candidates'));}
+            return view('election.show',compact('election','candidates','precincts'));}
         else
         { 
-            return view('election.create');
+            return view('election.create',compact('precincts','pcount'));
         }
     }
     public function results()

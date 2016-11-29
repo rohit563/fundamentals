@@ -133,7 +133,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                @foreach($elections->where('Election_Type','Locall') as $key=>$election)
+                                @foreach($elections->where('Election_Type','Local') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
                                     <td>{{$election->Election_info}}</td>

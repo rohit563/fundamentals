@@ -53,7 +53,7 @@
                                         <span class="help-block">
                                             <strong>{{ $errors->first('Name') }}</strong>
                                         </span>
-                                    @endif
+                                @endif
                             </div>
                         </div>
                          <div>
@@ -75,6 +75,18 @@
                             </div>
                         </div>
                         <div>
+                        <div id="State">
+                           <label for="StateLabel" class="col-md-4 control-label">State</label>
+                           <div class="col-md-6">
+                           <h5>{{$election->State}}</h5>
+                           </div>
+                        </div>
+                        <div id="Precinct">
+                           <label for="PrecinctLabel" class="col-md-4 control-label ">Precinct ID</label>
+                           <div class="col-md-6 ">
+                           <h5>{{$election->precinctID}}</h5>
+                           </div>
+                        </div><br><br>
                         
                             <div id="candidateList">
                                 @foreach($candidates as $key=>$candidate)
@@ -85,7 +97,7 @@
                                 <label class="col-md-4 control-label for="Position[]"">Position</label>
                                 <div class="col-md-6">
                                         <h5 name="Position">{{$candidate->Position}}</h5>
-                                    </div>
+                                </div>
                                 <label class="col-md-4 control-label for="Age[]"">Age</label>
                                     <div class="col-md-6">
                                         <input type="text" name="Age[]" id="Age[]" class="form-control" value ="{{$candidate->Age}}" readonly>
@@ -110,20 +122,6 @@
                                 </div>
                             </div>
                     </form>        
-                            <div class="col-md-6 col-md-offset-4 ">
-                                <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">-->
-                                <!--<button id="submit" type="submit"class="btn btn-primary" style="display:none;">-->
-                                <!--    <i class="fa fa-btn fa-user"></i> Update-->
-                                <!--</button>-->
-                                <!--</form>-->
-                                <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/'.Auth::user()->type) }}">-->
-                            <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/') }}">-->
-                            <!--    <button type="submit" class="btn btn-primary" value = "View Elections" id = "back">-->
-                            <!--    <i class="fa fa-btn fa-elections"></i> Back to All Elections -->
-                            <!--    </button>-->
-                            <!--</form>-->
-                        </div>
-                    </div>
             </div>
         </div>
     </div>

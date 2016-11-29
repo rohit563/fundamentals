@@ -19,6 +19,7 @@ class CreateElectionsTable extends Migration
             $table->string('Date');
             $table->string('Election_Type');
             $table->string('precinctID');
+            $table->string('State');
             $table->boolean('isEnabled');
             $table->boolean('publishResults');
             $table->timestamps();
