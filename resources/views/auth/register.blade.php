@@ -261,7 +261,6 @@
                                         <option value="">- SELECT -</option>
                                         <option value="3">User</option>
                                         <option value="2">Manager</option>
-                                        <option value="1">Admin</option>
                                     </select>
                             </div>
                         </div>

@@ -84,9 +84,13 @@ class AuthController extends Controller
         $zip = $data['zip'];
         try {
             $precinct = DB::table('zipcodes')->where('zipcode', $zip)->pluck('precinctID');
+            if(!isset($precinct[0])) {
+                $precinct[0] = '';
+            }
         } catch (Exception $e) {
             return Redirect::to('/register')->with('danger', 'Please Enter A Valid Zip Code.');
         }
+
         
         // $zipRow = DB::table('users')->where('zipcode', $zip)->first();
         return User::create([
@@ -103,7 +107,7 @@ class AuthController extends Controller
             'zip' => $data['zip'],
             'dob' => $data['dob'],
             'type' => $data['account_Type'],
-            // 'precinctID' => $precinct[0],
+            'precinctID' => $precinct[0],
             
         ]);
     }
