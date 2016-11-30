@@ -81,6 +81,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $zip = $data['zip'];
+        try {
+            $precinct = DB::table('zipcodes')->where('zipcode', $zip)->pluck('precinctID');
+        } catch (Exception $e) {
+            return Redirect::to('/register')->with('danger', 'Please Enter A Valid Zip Code.');
+        }
+        
+        // $zipRow = DB::table('users')->where('zipcode', $zip)->first();
         return User::create([
             
             'name' => $data['name'],
@@ -94,7 +102,8 @@ class AuthController extends Controller
             'address2' => $data['address2'],
             'zip' => $data['zip'],
             'dob' => $data['dob'],
-            'type' => $data['type'],
+            'type' => $data['account_Type'],
+            // 'precinctID' => $precinct[0],
             
         ]);
     }
@@ -147,7 +156,7 @@ class AuthController extends Controller
             return "/manager";
             // or return route('routename');
         }
-        return "/home";
+        return "/user";
         // or return route('routename');
     }
 }

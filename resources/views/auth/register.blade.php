@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
+ <script type="text/javascript">
+        //when the webpage has loaded do this
+        $(document).ready(function() {  
+             $('#accountType').hide();
+            //if the value within the dropdown box has changed then run this code            
+            $('#account_Type').change(function(){
+                if ($('select[name=account_Type]').val() == '2'){
+                    $('#accountType').show();
+                 }
+                 else{
+                    $('#accountType').hide(); 
+                 }
+            });
+        }); 
+    </script>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -220,7 +236,6 @@
                                 @endif
                             </div>
                         </div>
-                        
                         <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                             <label for="gender" class="col-md-4 control-label">Gender</label>
 
@@ -235,11 +250,24 @@
                                     </span>
                                 @endif
                             </div>
+                            
                         </div>
                         
-                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                            <label for="type" class="col-md-4 control-label">Manager Code</label>
+                        <div id="type" class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Account Type</label>
                             <div class="col-md-6">
+                                
+                                    <select id="account_Type" name="account_Type">
+                                        <option value="">- SELECT -</option>
+                                        <option value="3">User</option>
+                                        <option value="2">Manager</option>
+                                        <option value="1">Admin</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div id ="accountType">
+                            <label for="Manager Code" class="col-md-4 control-label">Manager Code</label>
+                            <div  class="col-md-6">
                                 <input id="type1" type="type1" class="form-control" name="type1" value="{{ old('type') }}" onkeyup="validateNumber()" onclick="validateNumber()" onchange="validateNumber()">
                                 <input id="type" type="hidden" class="form-control" name="type" value="3">
                                 <script type="text/javascript">

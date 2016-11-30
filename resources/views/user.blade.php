@@ -87,16 +87,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </button>
                                             </div>
                                         </form>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "Vote">
-                                            <i class="fa fa-btn fa-elections"></i> Vote 
-                                            </button>
-                                            </div>
-                                        </form>
                                     </td>
                                     <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id.'/vote') }}">
                                             <div class="text-center">
                                             <button type="submit" class="btn btn-danger" value = "Vote">
                                             <i class="fa fa-btn fa-elections"></i> Vote 
@@ -120,7 +113,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
                                     <th style = "text-align:center">Vote in Election</th>
-                                @foreach($elections->where('Election_Type','Locall') as $key=>$election)
+                                @foreach($elections->where('Election_Type','Local') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
                                     <td>{{$election->Election_info}}</td>
@@ -133,16 +126,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </button>
                                             </div>
                                         </form>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "Vote">
-                                            <i class="fa fa-btn fa-elections"></i> Vote 
-                                            </button>
-                                            </div>
-                                        </form>
                                     </td>
                                     <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id.'/vote') }}">
                                             <div class="text-center">
                                             <button type="submit" class="btn btn-danger" value = "Vote">
                                             <i class="fa fa-btn fa-elections"></i> Vote 

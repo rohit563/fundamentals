@@ -12,8 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'passport', 'driversLicense', 'gender', 'address1', 'address2', 'city', 'state', 'zip', 'dob', 'type'
-    ];
+        'name', 'email', 'password', 'username', 'passport', 'driversLicense', 'gender', 'address1', 'address2', 'city', 'state', 'zip', 'dob', 'type', 'precinctID'];
     // public function getFillable() {
     //     return $this->fillable;
     // }

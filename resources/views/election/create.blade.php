@@ -19,10 +19,12 @@
                 for (i=1;i<=num;i++) {
                     //concatinate number of fields to a variable
                     html += '<label class="col-md-4 control-label for="Candidate_Name[]"">Candidate ' + i + '</label><div class="col-md-6"><input type="text" name="Candidate_Name[]" id="Candidate_Name[]" class="form-control" value =""/></div>'; 
-                    html += '<label class="col-md-4 control-label for="Position[]"">Position</label><div class="col-md-6" style = "margin:.5em;margin-left:-.073em;"><select id="Position[]" name="Position[]"><option value="0">- SELECT -</option><option value="President">President</option><option value="Vice President">Vice President</option><option value="Other">Other</option></select></div>';
+                    html += '<label class="col-md-4 control-label for="Position[]"">Position</label><div class="col-md-6" style = "margin:.5em;margin-left:-.073em;"><select id="Position[]" name="Position[]"><option value="0">- SELECT -</option><option value="President">President</option><option value="Vice President">Vice President</option><option value="Senator">Senator</option><option value="House of Representative">House of Representative</option><option value="Judge">Judge</option><option value="Other">Other</option></select></div>';
                     html += '<label class="col-md-4 control-label for="Age[]"">Age</label><div class="col-md-6"><input type="text" name="Age[]" id="Age[]" class="form-control" value =""/></div>';
                     html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6" style = "margin:.5em;margin-left:-.073em;;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="Republican">Republican</option><option value="Democratic">Democratic</option><option value="Other">Other</option></select></div>';
                     html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate ' + i + ' Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control" value=""/></div>';
+                    html +=' <div id="AssignPrecinct"><label for="AssignPrecinct" class="col-md-4 control-label">Assign Candidate to Precinct</label><div class="col-md-6" style = "margin-top:.5em;"><select id="precinctID" name="precinctID">@foreach($precincts as $precinct)<option value = "{{$precinct->precinctID}}">{{$precinct->precinctID}}</option>@endforeach</select></div></div>'
+                    
                 }
                 
                 //insert this html code into the div with id catList
@@ -34,11 +36,13 @@
         //when the webpage has loaded do this
         $(document).ready(function() {  
              $('#precinct').hide();
+             $('#AssignPrecinct').hide();
              $('#State').hide();
             //if the value within the dropdown box has changed then run this code            
             $('#Election_Type').change(function(){
                 if ($('select[name=Election_Type]').val() == 'Local'){
                     $('#precinct').show();
+                    $('#AssignPrecinct').show();
                     $('#State').show();
                  }
                 else if ($('select[name=Election_Type]').val() == 'State'){
@@ -48,6 +52,7 @@
                 else{
                     $('#precinct').hide();
                     $('#State').hide();
+                    $('#AssignPrecinct').hide();
                 } 
             });
         }); 
@@ -76,7 +81,7 @@
                                     <input id="Name" type="Text" class="form-control" name="Name">
                                 </div>
                             </div>
-                             <div>
+                            <div>
                                 <label for="Election_info" class="col-md-4 control-label">Election Info</label>
     
                                 <div class="col-md-6">
@@ -123,7 +128,7 @@
                                     </select>     
                                  </div>
                             </div>
-
+                           
                             <div>
                                 <label for="Number_of-Candidates" class="col-md-4 control-label" >Number of Candidates</label>
         

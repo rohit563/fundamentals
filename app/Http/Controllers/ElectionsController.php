@@ -70,7 +70,7 @@ class ElectionsController extends Controller
     public function index()
     {
         $precincts = \DB::table('precincts')->get();
-        $pcount = count(precincts);
+        $pcount = count($precincts);
         return view('election.create',compact('precincts','pcount'));
     }
     public function show($id)
@@ -108,5 +108,9 @@ class ElectionsController extends Controller
             
         }
         
+        $vote->User_id = Auth::user()->id;
+        $vote->Election_id = $election->id;
+        $vote->Candidate_id = $request->vote;
+        return redirect()->back()->with('message','You voted successfully');
     }
 }
