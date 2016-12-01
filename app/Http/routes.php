@@ -28,6 +28,7 @@ Route::resource('users','usercontroller');
 Route::get('/user', 'usercontroller@view');
 Route::get('/election/{id}','ElectionsController@show');
 Route::get('/election/{id}/vote','ElectionsController@vote');
+Route::post('/election/{id}/vote','ElectionsController@sendvote');
 // Route::resource('users','AuthController');
 Route::get('/results','ElectionsController@results');
 Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function()

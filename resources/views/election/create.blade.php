@@ -23,7 +23,6 @@
                     html += '<label class="col-md-4 control-label for="Age[]"">Age</label><div class="col-md-6"><input type="text" name="Age[]" id="Age[]" class="form-control" value =""/></div>';
                     html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6" style = "margin:.5em;margin-left:-.073em;;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="Republican">Republican</option><option value="Democratic">Democratic</option><option value="Other">Other</option></select></div>';
                     html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate ' + i + ' Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control" value=""/></div>';
-                    html +=' <div id="AssignPrecinct"><label for="AssignPrecinct" class="col-md-4 control-label">Assign Candidate to Precinct</label><div class="col-md-6" style = "margin-top:.5em;"><select id="precinctID" name="precinctID">@foreach($precincts as $precinct)<option value = "{{$precinct->precinctID}}">{{$precinct->precinctID}}</option>@endforeach</select></div></div>'
                     
                 }
                 
@@ -126,7 +125,13 @@
                                          <option value = "{{$precinct->precinctID}}">{{$precinct->precinctID}}</option>
                                         @endforeach 
                                     </select>     
-                                 </div>
+                                 
+                                     <select id="manager" name="manager">
+                                        @foreach($managers as $manager)
+                                         <option value = "{{$manager->name}}">{{$managert->name}}</option>
+                                        @endforeach 
+                                    </select>     
+                                 
                             </div>
                            
                             <div>
@@ -148,7 +153,7 @@
                             <!--</div>-->
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4" align = "center" style = "margin-top:.2em;margin-bottom:.2em;">
-                                    <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center"
+                                    <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center">
                                         <i class="fa fa-btn fa-elections"></i> Create Election
                                     </button>
                                 </div>

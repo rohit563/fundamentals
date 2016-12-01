@@ -59,7 +59,7 @@ tr:nth-child(4n+2), tr:nth-child(4n+3) {
                                 <p>{{ Session::get('message') }}</p>
                             </div>
                         @endif
-                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_method" value="POST">
                         <div>
                             <label for="name" class="col-md-4 control-label">Election Name</label>
                             <div class="col-md-6 {{ $errors->has('Name') ? ' has-error' : '' }}">
@@ -108,13 +108,13 @@ tr:nth-child(4n+2), tr:nth-child(4n+3) {
                                     <td>
                                         {{$candidate->Political_Party}}
                                     </td>
-                                    <td><input type="radio" name="vote"></td>
+                                    <td><input type="radio" name="vote_[{{$candidate->id}}]"></td>
                                 </tr>
                                  @endforeach
                                 </table>
                             </div>
-                    </form>        
-                    </div>
+                           
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3" align = "center" style = "margin-top:.2em;margin-bottom:.2em;">
                                 <button type="submit" class="btn btn-danger" value = "Vote" text-align = "center"
@@ -122,6 +122,7 @@ tr:nth-child(4n+2), tr:nth-child(4n+3) {
                                 </button>
                             </div>
                         </div>
+                   </form> 
             </div>
         </div>
     </div>

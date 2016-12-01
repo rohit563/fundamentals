@@ -8,6 +8,7 @@ use DB;
 use App\Election;
 use App\Candidate;
 use App\Vote;
+use Auth;
 
 class ElectionsController extends Controller
 {
@@ -70,13 +71,15 @@ class ElectionsController extends Controller
     public function index()
     {
         $precincts = \DB::table('precincts')->get();
+        $managers = \DB::table('users')->where('type',2)->get();
         $pcount = count($precincts);
-        return view('election.create',compact('precincts','pcount'));
+        return view('election.create',compact('precincts','pcount','managers'));
     }
     public function show($id)
     {
         $election = Election::find($id);
         $precincts = \DB::table('precincts')->get();
+        $managers = \DB::table('users')->where('type',2)->get();
         $pcount = count($precincts);
         if(!empty($election))
         {
@@ -84,7 +87,7 @@ class ElectionsController extends Controller
             return view('election.show',compact('election','candidates','precincts'));}
         else
         { 
-            return view('election.create',compact('precincts','pcount'));
+            return view('election.create',compact('precincts','pcount','managers'));
         }
     }
     public function results()
@@ -93,9 +96,10 @@ class ElectionsController extends Controller
         $candidates = Candidate::all();
         $count = $elections->count();
         $ccount = $candidates->count();
+        $votes = Vote::all();
         // $elections = DB::table('elections')->get();
         // $candidates = DB::table('candidates')->get();
-        return view('election.results',compact('elections','candidates','ccount','count'));
+        return view('election.results',compact('elections','candidates','ccount','count','votes'));
     }
     public function vote($id)
     {
@@ -105,12 +109,25 @@ class ElectionsController extends Controller
             $candidates = Candidate::where('Election_id',$id)->cursor();
             // return view('election.show',compact('election','candidates'));
             return view('election.vote',compact('election','candidates'));
-            
         }
+    }
+    public function sendvote(Request $request,$id)
+    {
+        $election = Election::find($id);
+        if(!empty($election))
+        {
+            $candidates = Candidate::where('Election_id',$id)->cursor();
         
-        $vote->User_id = Auth::user()->id;
-        $vote->Election_id = $election->id;
-        $vote->Candidate_id = $request->vote;
+            $vote  = new Vote();
+            $user = Auth::user();
+            $vote->User_id = $user->id;
+            $vote->Election_id = $election->id;
+            $c = count($request->vote);
+            foreach($candidates as $candidate){
+            $vote->Candidate_id = $candidate->id;
+            }
+        }
+        $vote->save();
         return redirect()->back()->with('message','You voted successfully');
     }
 }

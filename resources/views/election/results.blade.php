@@ -35,7 +35,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <td>
                                     @foreach($candidates as $candidate)
                                         @if($election->id == $candidate->Election_id)
-                                            <h5>{{$candidate->Candidate_Name}}:  X Votes</h5>
+                                            <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
                                         @endif
                                     @endforeach
                                     </td>
@@ -60,7 +60,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <td>
                                     @foreach($candidates as $candidate)
                                         @if($election->id == $candidate->Election_id)
-                                            <h5>{{$candidate->Candidate_Name}}:  X Votes</h5>
+                                            <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
                                         @endif
                                     @endforeach
                                     </td>
@@ -86,7 +86,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <td>
                                     @foreach($candidates as $candidate)
                                         @if($election->id == $candidate->Election_id)
-                                            <h5>{{$candidate->Candidate_Name}}:  X Votes</h5>
+                                            <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
                                         @endif
                                     @endforeach
                                     </td>
