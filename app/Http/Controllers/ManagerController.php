@@ -46,6 +46,6 @@ class ManagerController extends Controller
         $election->endDate = $request->endDate;
         $election->save();
         }
-        return redirect()->back()->with('message','Start and Stop Time Updated Successfully');
+        return back()->with('message','Start and Stop Time Updated Successfully');
     }
 }

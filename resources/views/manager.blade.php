@@ -36,11 +36,6 @@ setInterval( function() {
     }, 1000);	
 });
 </script>
-<script>
-$(function(){
-    $('#datetime12').combodate();  
-});
-</script>
 <style>
 table, th, td {
    border: 1px solid black;
@@ -59,6 +54,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
             <div class="panel panel-default">
                 <div class="panel-heading">Manager Dashboard</div>
                 <div class="panel-body">
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="clock">
                     <div id="Date"></div>
                       <table style="border:none">
@@ -71,9 +67,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                           </tr>
                       </table>
                     </div>
-                    <h5 >Time: {{$date}} </h5>
-                    <h5 style = "text-align:center;">Total Elections Count: {{$count}}</h5>
-                    <h5 style = "text-align:center;">Total Candidates Count: {{$ccount}}</h5>
+                    <h5 style = "text-align:center;">Total Elections: {{$count}}</h5>
+                    <h5 style = "text-align:center;">Total Candidates: {{$ccount}}</h5>
                     <div class="col-md-10 col-md-offset-1 ">
                         <div class="panel panel-default">
                             <div class="panel-heading">National Elections</div>
@@ -82,34 +77,56 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                    <th style = "text-align:center">Start Date</th>
-                                    <th style = "text-align:center">Stop Date</th>
+                                    <th style = "text-align:center">Start/Stop Date</th>
                                     <th style = "text-align:center">Update Election</th>
+                                    <th style = "text-align:center">Start Election</th>
+                                    <th style = "text-align:center">Publish Results</th>
+                                    
                                 @foreach($elections->where('Election_Type','National') as $election)
-                                <tr>
-                                    <td>{{$election->Name}}</td>
-                                    <td>{{$election->Election_info}}</td>
-                                    <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "View Election">
-                                            <i class="fa fa-btn fa-elections"></i> View Election 
-                                            </button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                      <td><input type="text" id="startDate" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="startDate" value="12-5-2016 8:30 am"></td>
-                                    <td><input type="text" id="endDate" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="endDate" value="12-5-2016 8:30 pm"></td>
-                                    <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "View Election">
-                                            <i class="fa fa-btn fa-elections"></i> Update 
-                                            </button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    @if ($election->precinctID == Auth::user()->precinctID)
+                                        <tr>
+                                            <td>{{$election->Name}}</td>
+                                            <td>{{$election->Election_info}}</td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> View Election 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td><input type="datetime" id="startDate"  name="startDate" value = "{{$election->startDate}}" ><br>
+                                            <input type="datetime" id="endDate"  name="endDate" value = "{{$election->endDate}}"></td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Update 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-warning" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Start 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-success" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Publish 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -124,35 +141,56 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                    <th style = "text-align:center">Start Date</th>
-                                    <th style = "text-align:center">Stop Date</th>
+                                    <th style = "text-align:center">Start/Stop Date</th>
                                     <th style = "text-align:center">Update Election</th>
+                                    <th style = "text-align:center">Start Election</th>
+                                    <th style = "text-align:center">Publish Results</th>
                                 @foreach($elections->where('Election_Type','State') as $key=>$election)
-                                <tr>
-                                    <td>{{$election->Name}}</td>
-                                    <td>{{$election->Election_info}}</td>
-                                    </td>
-                                    <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "View Election">
-                                            <i class="fa fa-btn fa-elections"></i> View Election 
-                                            </button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                     <td><input type="text" id="startDate" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="startDate" value="12-5-2016 8:30 am"></td>
-                                    <td><input type="text" id="endDate" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="endDate" value="12-5-2016 8:30 pm"></td>
-                                    <td>
-                                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/manager') }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "Update Election">
-                                            <i class="fa fa-btn fa-elections"></i> Update 
-                                            </button>
-                                            </div>
-                                        </form>
-                                    </td>                                
-                                </tr>
+                                    @if ($election->precinctID == Auth::user()->precinctID)
+                                        <tr>
+                                            <td>{{$election->Name}}</td>
+                                            <td>{{$election->Election_info}}</td>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> View Election 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                           <td><input type="datetime" id="startDate"  name="startDate" value = "{{$election->startDate}}" ><br>
+                                            <input type="datetime" id="endDate"  name="endDate" value = "{{$election->endDate}}"></td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary" value = "Update Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Update 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td> 
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-warning" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Start 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-success" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Publish 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -167,36 +205,57 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                    <th style = "text-align:center">Start Date</th>
-                                    <th style = "text-align:center">Stop Date</th>
+                                    <th style = "text-align:center">Start/Stop Date</th>
                                     <th style = "text-align:center">Update Election</th>
-                                @foreach($elections->where('Election_Type','Locall') as $key=>$election)
-                                <tr>
-                                    <td>{{$election->Name}}</td>
-                                    <td>{{$election->Election_info}}</td>
-                                    </td>
-                                    <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "View Election">
-                                            <i class="fa fa-btn fa-elections"></i> View Election 
-                                            </button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                    <td><input type="text" id="startDate" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="startDate" value="12-5-2016 8:30 am"></td>
-                                    <td><input type="text" id="endDate" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="endDate" value="12-5-2016 8:30 pm"></td>
-                                    <td>
-                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}">
-                                            <div class="text-center">
-                                            <button type="submit" class="btn btn-primary" value = "View Election">
-                                            <i class="fa fa-btn fa-elections"></i> Update 
-                                            </button>
-                                            </div>
-                                        </form>
-                                    </td>
-
-                                </tr>
+                                    <th style = "text-align:center">Start Election</th>
+                                    <th style = "text-align:center">Publish Results</th>
+                                @foreach($elections->where('Election_Type','Local') as $key=>$election)
+                                    @if ($election->precinctID == Auth::user()->precinctID)
+                                        <tr>
+                                            <td>{{$election->Name}}</td>
+                                            <td>{{$election->Election_info}}</td>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id) }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> View Election 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td><input type="datetime" id="startDate"  name="startDate" value = "{{$election->startDate}}" ><br>
+                                            <input type="datetime" id="endDate"  name="endDate" value = "{{$election->endDate}}"></td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Update 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-warning" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Start 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                    <div class="text-center">
+                                                    <button type="submit" class="btn btn-success" value = "View Election">
+                                                    <i class="fa fa-btn fa-elections"></i> Publish 
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+        
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -205,9 +264,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                 </div>
             </div>
         </div>
-        <form class="form-horizontal" role="form" method="get" action="{{ url('/election/create') }}">
-        <button type = "submit" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-        </form>
+        <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/election/create') }}">-->
+        <!--<button type = "submit" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>-->
+        <!--</form>-->
     </div>
 </div>
 @endsection
