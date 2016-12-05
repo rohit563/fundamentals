@@ -128,12 +128,12 @@
                                  
                                      <select id="manager" name="manager">
                                         @foreach($managers as $manager)
-                                         <option value = "{{$manager->name}}">{{$managert->name}}</option>
+                                         <option value = "{{$manager->name}}">{{$manager->name}}</option>
                                         @endforeach 
                                     </select>     
                                  
-                            </div>
-                           
+                                </div>
+                           </div>
                             <div>
                                 <label for="Number_of-Candidates" class="col-md-4 control-label" >Number of Candidates</label>
         

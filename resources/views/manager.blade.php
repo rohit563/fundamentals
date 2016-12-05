@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
 // Create two variable with the names of the months and days in an array
 var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
@@ -34,6 +34,11 @@ setInterval( function() {
 	// Add a leading zero to the hours value
 	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
     }, 1000);	
+});
+</script>
+<script>
+$(function(){
+    $('#datetime12').combodate();  
 });
 </script>
 <style>
@@ -77,6 +82,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
+                                    <th style = "text-align:center">Start Time</th>
+                                    <th style = "text-align:center">Stop Time</th>
+                                    
                                 @foreach($elections->where('Election_Type','National') as $election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -90,6 +98,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
+                                     <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
+                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
                                 </tr>
                                 @endforeach
                                 </table>
@@ -105,6 +115,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
+                                    <th style = "text-align:center">Start Time</th>
+                                    <th style = "text-align:center">Stop Time</th>
                                 @foreach($elections->where('Election_Type','State') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -119,6 +131,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
+                                     <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
+                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
                                 </tr>
                                 @endforeach
                                 </table>
@@ -134,6 +148,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
+                                    <th style = "text-align:center">Start Time</th>
+                                    <th style = "text-align:center">Stop Time</th>
                                 @foreach($elections->where('Election_Type','Locall') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -148,6 +164,10 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
+                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
+                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
+                                    
+
                                 </tr>
                                 @endforeach
                                 </table>

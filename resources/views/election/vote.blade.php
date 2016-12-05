@@ -108,7 +108,7 @@ tr:nth-child(4n+2), tr:nth-child(4n+3) {
                                     <td>
                                         {{$candidate->Political_Party}}
                                     </td>
-                                    <td><input type="radio" name="vote_[{{$candidate->id}}]"></td>
+                                    <td><input type="radio" name="vote_[{{$candidate->id}}]" value = "{{$candidate->id}}"></td>
                                 </tr>
                                  @endforeach
                                 </table>

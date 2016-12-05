@@ -123,9 +123,11 @@ class ElectionsController extends Controller
             $vote->User_id = $user->id;
             $vote->Election_id = $election->id;
             $c = count($request->vote);
+            //Voting problem is here??
             foreach($candidates as $candidate){
             $vote->Candidate_id = $candidate->id;
             }
+            // $user->votesCast = $election->id;
         }
         $vote->save();
         return redirect()->back()->with('message','You voted successfully');

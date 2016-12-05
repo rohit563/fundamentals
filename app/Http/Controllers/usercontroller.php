@@ -11,6 +11,7 @@ use Auth;
 use Illuminate\Support\Facades\Input;
 use App\Election;
 use App\Candidate;
+use App\Vote;
 
 class usercontroller extends Controller
 {
@@ -28,16 +29,11 @@ class usercontroller extends Controller
             'zip' => 'required|min:5',
             'dob' => 'required|date', 
             'type' => 'min:1',
-            
-            
         ]);
     }
     
     public function update(Request $request) {
         
-        // var_dump($id)
-        // $user = User::find($users);
-        // var_dump($user->id);
         $input = $request->only('name','email', 'address1', 'address2', 'city', 'state', 'zip');
         $user = Auth::user();
         $user->name = $input['name'];
@@ -47,14 +43,6 @@ class usercontroller extends Controller
         $user->city = $input['city'];
         $user->state = $input['state'];
         $user->zip = $input['zip'];
-        // $user->name = \Input::get('name');
-        // $user->email = \Input::get('email');
-        // $user->address1 = \Input::get('address1');
-        // $user->address2 = \Input::get('address2');
-        // $user->city = \Input::get('city');
-        // $user->state = \Input::get('state');
-        // $user->zip = \Input::get('zip');
-        // $user->type = \Input::get('type');
         $user->save();
         
         return back()->with('message', 'Profile Updated Successfully.');
@@ -68,9 +56,6 @@ class usercontroller extends Controller
     public function index()
     {
         return view('users.index');
-        
-
-        // return View::make('users.index', compact('users'));
     }
     public function view()
     {
@@ -78,6 +63,7 @@ class usercontroller extends Controller
         $candidates = Candidate::all();
         $count = $elections->count();
         $ccount = $candidates->count();
-        return view('user',compact('elections','candidates','count','ccount'));
+        $votes = Vote::all();
+        return view('user',compact('elections','candidates','count','ccount','votes'));
     }
 }

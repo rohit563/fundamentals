@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->integer('type');
             $table->string('precinctID');
+            $table->string('votesCast');
             $table->rememberToken();
             $table->timestamps();
         });
