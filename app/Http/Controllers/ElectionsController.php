@@ -42,6 +42,10 @@ class ElectionsController extends Controller
         $election->Election_info = $request->Election_info;
         $election-> Date = $request->Date;
         $election->Election_Type = $request->Election_Type;
+        //Create elections based on precinct
+        if($request->Election_Type =="State" || $request->Election_Type=="National"){
+            
+        }
         $election->State = $request->State;
         $election->precinctID = $request->precinctID;
         
@@ -122,12 +126,8 @@ class ElectionsController extends Controller
             $user = Auth::user();
             $vote->User_id = $user->id;
             $vote->Election_id = $election->id;
-            $c = count($request->vote);
-            //Voting problem is here??
-            foreach($candidates as $candidate){
-            $vote->Candidate_id = $candidate->id;
-            }
-            // $user->votesCast = $election->id;
+            $c = count($request->input('vote'));
+            $vote->Candidate_id = $request->input('vote');
         }
         $vote->save();
         return redirect()->back()->with('message','You voted successfully');

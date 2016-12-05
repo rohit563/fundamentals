@@ -76,6 +76,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
+                                    <th style = "text-align:center">Start Date</th>
+                                    <th style = "text-align:center">Stop Date</th>
                                 @foreach($elections->where('Election_Type','National') as $election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -89,6 +91,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
+                                    <td>{{$election->startDate}}</td>
+                                    <td>{{$election->endDate}}</td>
                                 </tr>
                                 @endforeach
                                 </table>
@@ -104,6 +108,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
+                                    <th style = "text-align:center">Start Date</th>
+                                    <th style = "text-align:center">Stop Date</th>
                                 @foreach($elections->where('Election_Type','State') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -118,6 +124,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
+                                    <td>{{$election->startDate}}</td>
+                                    <td>{{$election->endDate}}</td>
                                 </tr>
                                 @endforeach
                                 </table>
@@ -133,6 +141,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
+                                    <th style = "text-align:center">Start Date</th>
+                                    <th style = "text-align:center">Stop Date</th>
                                 @foreach($elections->where('Election_Type','Local') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -147,6 +157,8 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
+                                    <td>{{$election->startDate}}</td>
+                                    <td>{{$election->endDate}}</td>
                                 </tr>
                                 @endforeach
                                 </table>

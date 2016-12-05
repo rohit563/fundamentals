@@ -82,9 +82,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                    <th style = "text-align:center">Start Time</th>
-                                    <th style = "text-align:center">Stop Time</th>
-                                    
+                                    <th style = "text-align:center">Start Date</th>
+                                    <th style = "text-align:center">Stop Date</th>
+                                    <th style = "text-align:center">Update Election</th>
                                 @foreach($elections->where('Election_Type','National') as $election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -98,8 +98,17 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
-                                     <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
-                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
+                                      <td><input type="text" id="startDate" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="startDate" value="12-5-2016 8:30 am"></td>
+                                    <td><input type="text" id="endDate" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="endDate" value="12-5-2016 8:30 pm"></td>
+                                    <td>
+                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}">
+                                            <div class="text-center">
+                                            <button type="submit" class="btn btn-primary" value = "View Election">
+                                            <i class="fa fa-btn fa-elections"></i> Update 
+                                            </button>
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </table>
@@ -115,8 +124,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                    <th style = "text-align:center">Start Time</th>
-                                    <th style = "text-align:center">Stop Time</th>
+                                    <th style = "text-align:center">Start Date</th>
+                                    <th style = "text-align:center">Stop Date</th>
+                                    <th style = "text-align:center">Update Election</th>
                                 @foreach($elections->where('Election_Type','State') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -131,8 +141,17 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
-                                     <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
-                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
+                                     <td><input type="text" id="startDate" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="startDate" value="12-5-2016 8:30 am"></td>
+                                    <td><input type="text" id="endDate" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="endDate" value="12-5-2016 8:30 pm"></td>
+                                    <td>
+                                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/manager') }}">
+                                            <div class="text-center">
+                                            <button type="submit" class="btn btn-primary" value = "Update Election">
+                                            <i class="fa fa-btn fa-elections"></i> Update 
+                                            </button>
+                                            </div>
+                                        </form>
+                                    </td>                                
                                 </tr>
                                 @endforeach
                                 </table>
@@ -148,8 +167,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Name</th>
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
-                                    <th style = "text-align:center">Start Time</th>
-                                    <th style = "text-align:center">Stop Time</th>
+                                    <th style = "text-align:center">Start Date</th>
+                                    <th style = "text-align:center">Stop Date</th>
+                                    <th style = "text-align:center">Update Election</th>
                                 @foreach($elections->where('Election_Type','Locall') as $key=>$election)
                                 <tr>
                                     <td>{{$election->Name}}</td>
@@ -164,9 +184,17 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </div>
                                         </form>
                                     </td>
-                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
-                                    <td><input type="text" id="datetime12" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="datetime" value="21-12-2012 8:30 pm"></td>
-                                    
+                                    <td><input type="text" id="startDate" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="startDate" value="12-5-2016 8:30 am"></td>
+                                    <td><input type="text" id="endDate" data-format="MM-DD-YYYY h:mm a" data-template="MM/ DD / YYYY     hh : mm a" name="endDate" value="12-5-2016 8:30 pm"></td>
+                                    <td>
+                                        <form class="form-horizontal" role="form" method="get" action="{{ url('/manager') }}">
+                                            <div class="text-center">
+                                            <button type="submit" class="btn btn-primary" value = "View Election">
+                                            <i class="fa fa-btn fa-elections"></i> Update 
+                                            </button>
+                                            </div>
+                                        </form>
+                                    </td>
 
                                 </tr>
                                 @endforeach

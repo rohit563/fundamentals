@@ -27,7 +27,7 @@ class ManagerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $elections = Election::all();
         $candidates = Candidate::all();
@@ -35,8 +35,17 @@ class ManagerController extends Controller
         $ccount = $candidates->count();
         $date = Carbon::now();
         //printf("Now: %s", Carbon::now());
+        
         return view('manager',compact('elections','count','candidates','ccount','date'));
         // return view('manager');
     }
-    
+    public function updateTimes(Request $request){
+        $elections = Election::all();
+        foreach($elections as $election){
+        $election->startDate = $request->startDate;
+        $election->endDate = $request->endDate;
+        $election->save();
+        }
+        return redirect()->back()->with('message','Start and Stop Time Updated Successfully');
+    }
 }
