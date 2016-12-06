@@ -101,7 +101,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             <td>
                                                 <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <button type="submit" class="btn btn-danger" value = "View Election">
                                                     <i class="fa fa-btn fa-elections"></i> Update 
                                                     </button>
                                                     </div>
@@ -165,7 +165,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             <td>
                                                 <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-primary" value = "Update Election">
+                                                    <button type="submit" class="btn btn-danger" value = "Update Election">
                                                     <i class="fa fa-btn fa-elections"></i> Update 
                                                     </button>
                                                     </div>
@@ -229,7 +229,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             <td>
                                                 <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-primary" value = "View Election">
+                                                    <button type="submit" class="btn btn-danger" value = "View Election">
                                                     <i class="fa fa-btn fa-elections"></i> Update 
                                                     </button>
                                                     </div>
