@@ -34,18 +34,22 @@ class ManagerController extends Controller
         $count = $elections->count();
         $ccount = $candidates->count();
         $date = Carbon::now();
-        //printf("Now: %s", Carbon::now());
         
         return view('manager',compact('elections','count','candidates','ccount','date'));
-        // return view('manager');
     }
     public function updateTimes(Request $request){
         $elections = Election::all();
         foreach($elections as $election){
-        $election->startDate = $request->startDate;
-        $election->endDate = $request->endDate;
+        $election->startDate = $request->input('startDate');
+        $election->endDate = $request->input('endDate');
         $election->save();
         }
         return back()->with('message','Start and Stop Time Updated Successfully');
+    }
+    public function start(Request $request, $id) {
+        $election = Election::find($id);
+        $election->isEnabled = 1;
+        $election->save();
+        return back()->with('message','Election Successfully Started');
     }
 }

@@ -62,11 +62,17 @@
                                 <input type="text" name="Election_info" id="Election_info" class="form-control" value ="{{$election->Election_info}}" readonly>
                             </div>
                         </div>
-                        <div>
-                            <label for="Date" class="col-md-4 control-label">Election Date</label>
-                            <div class="col-md-6">
-                                <input type="date" name="Date" id="Date" class="form-control" value ="{{$election->Date}}" readonly>
-                            </div>
+                        <div id = "electionTimes">
+                                <label for="startDate" class="col-md-4 control-label">Start Date</label>
+                                <div class="col-md-6">
+                                    <h5>{{$election->startDate}}</h5>
+                                </div>
+                                <br>
+                                <label for="startDate" class="col-md-4 control-label">End Date</label>
+                                <div class="col-md-6">
+                                   <h5>{{$election->endDate}}</h5>
+                                </div>
+                                
                         </div>
                         <div>
                             <label for="Election_Type" class="col-md-4 control-label">Election Type</label>

@@ -49,11 +49,15 @@ tr:nth-child(even) {background-color: #f2f2f2}
 </style>
 <div class="container">
     <div class="row">
-        
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Manager Dashboard</div>
                 <div class="panel-body">
+                    @if(Session::has('message'))
+                        <div class="alert alert-danger">
+                        <h5>{{ Session::get('message') }}</h5>
+                        </div>
+                    @endif
                     <input type="hidden" name="_method" value="PUT">
                     <div class="clock">
                     <div id="Date"></div>
@@ -78,7 +82,6 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
                                     <th style = "text-align:center">Start/Stop Date</th>
-                                    <th style = "text-align:center">Update Election</th>
                                     <th style = "text-align:center">Start Election</th>
                                     <th style = "text-align:center">Publish Results</th>
                                     
@@ -96,21 +99,14 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                     </div>
                                                 </form>
                                             </td>
-                                            <td><input type="datetime" id="startDate"  name="startDate" value = "{{$election->startDate}}" ><br>
-                                            <input type="datetime" id="endDate"  name="endDate" value = "{{$election->endDate}}"></td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
-                                                    <div class="text-center">
-                                                    <button type="submit" class="btn btn-danger" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Update 
-                                                    </button>
-                                                    </div>
-                                                </form>
+                                                <h5 >{{$election->startDate}}</h5><br>
+                                                <h5 >{{$election->endDate}}</h5>
                                             </td>
                                             <td>
                                                 <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-warning" value = "View Election">
+                                                    <button type="submit" class="btn btn-warning" value = "1">
                                                     <i class="fa fa-btn fa-elections"></i> Start 
                                                     </button>
                                                     </div>
@@ -142,7 +138,6 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
                                     <th style = "text-align:center">Start/Stop Date</th>
-                                    <th style = "text-align:center">Update Election</th>
                                     <th style = "text-align:center">Start Election</th>
                                     <th style = "text-align:center">Publish Results</th>
                                 @foreach($elections->where('Election_Type','State') as $key=>$election)
@@ -160,19 +155,12 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                     </div>
                                                 </form>
                                             </td>
-                                           <td><input type="datetime" id="startDate"  name="startDate" value = "{{$election->startDate}}" ><br>
-                                            <input type="datetime" id="endDate"  name="endDate" value = "{{$election->endDate}}"></td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
-                                                    <div class="text-center">
-                                                    <button type="submit" class="btn btn-danger" value = "Update Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Update 
-                                                    </button>
-                                                    </div>
-                                                </form>
-                                            </td> 
+                                                <h5 >{{$election->startDate}}</h5><br>
+                                                <h5 >{{$election->endDate}}</h5>
+                                            </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager/', $id = $election->id) }}">
                                                     <div class="text-center">
                                                     <button type="submit" class="btn btn-warning" value = "View Election">
                                                     <i class="fa fa-btn fa-elections"></i> Start 
@@ -206,7 +194,6 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">View Election</th>
                                     <th style = "text-align:center">Start/Stop Date</th>
-                                    <th style = "text-align:center">Update Election</th>
                                     <th style = "text-align:center">Start Election</th>
                                     <th style = "text-align:center">Publish Results</th>
                                 @foreach($elections->where('Election_Type','Local') as $key=>$election)
@@ -224,16 +211,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                     </div>
                                                 </form>
                                             </td>
-                                            <td><input type="datetime" id="startDate"  name="startDate" value = "{{$election->startDate}}" ><br>
-                                            <input type="datetime" id="endDate"  name="endDate" value = "{{$election->endDate}}"></td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
-                                                    <div class="text-center">
-                                                    <button type="submit" class="btn btn-danger" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Update 
-                                                    </button>
-                                                    </div>
-                                                </form>
+                                                <h5 >{{$election->startDate}}</h5><br>
+                                                <h5 >{{$election->endDate}}</h5>
                                             </td>
                                             <td>
                                                 <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
@@ -264,9 +244,6 @@ tr:nth-child(even) {background-color: #f2f2f2}
                 </div>
             </div>
         </div>
-        <!--<form class="form-horizontal" role="form" method="get" action="{{ url('/election/create') }}">-->
-        <!--<button type = "submit" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>-->
-        <!--</form>-->
     </div>
 </div>
 @endsection

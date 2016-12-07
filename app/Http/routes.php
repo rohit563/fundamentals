@@ -35,6 +35,7 @@ Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function
 {
     Route::get('/manager', 'ManagerController@index');
     Route::put('/manager', 'ManagerController@updateTimes');
+    Route::put('/manager', 'ManagerController@start');
 });
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 {

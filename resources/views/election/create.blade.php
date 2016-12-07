@@ -14,8 +14,6 @@
                 var i = 0; //integer variable for 'for' loop
                 var html = ''; //string variable for html code for fields 
                 //loop through to add the number of fields specified
-                // id ="Candidate_Name[]"
-                // name="Candidate[' + (i-1) +']"
                 for (i=1;i<=num;i++) {
                     //concatinate number of fields to a variable
                     html += '<label class="col-md-4 control-label for="Candidate_Name[]"">Candidate ' + i + '</label><div class="col-md-6"><input type="text" name="Candidate_Name[]" id="Candidate_Name[]" class="form-control" value =""/></div>'; 
@@ -45,13 +43,14 @@
                     $('#State').show();
                  }
                 else if ($('select[name=Election_Type]').val() == 'State'){
-                    $('#precinct').show();
+                    $('#precinct').hide();
                     $('#State').show();
+                    $('#AssignPrecinct').show();
                 }
                 else{
                     $('#precinct').hide();
                     $('#State').hide();
-                    $('#AssignPrecinct').hide();
+                    $('#AssignPrecinct').show();
                 } 
             });
         }); 
@@ -63,7 +62,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Election Form</div>
                 <div class="panel-body">
-                    <!--<h5># of Precincts: {{$pcount}}</h5>-->
                      <form class="form-horizontal" role="form" method="POST" action="{{ url('/election') }}">
                         {{ csrf_field() }}
                         @if (Session::has('message'))
@@ -87,12 +85,17 @@
                                     <input type="text" name="Election_info" id="Election_info" class="form-control">
                                 </div>
                             </div>
-                            <div>
-                                <label for="Date" class="col-md-4 control-label">Election Date</label>
-    
+                            <div id = "electionTimes">
+                                <label for="startDate" class="col-md-4 control-label">Start Date</label>
                                 <div class="col-md-6">
-                                    <input type="date" name="Date" id="Date" class="form-control">
+                                    <input type="datetime-local" name="startDate" id="startDate" class="form-control">
                                 </div>
+                                <br>
+                                <label for="startDate" class="col-md-4 control-label">End Date</label>
+                                <div class="col-md-6">
+                                    <input type="datetime-local" name="endDate" id="endDate" class="form-control">
+                                </div>
+                                
                             </div>
                             <div>
                                 <label for="Election_Type" class="col-md-4 control-label">Election Type</label>
@@ -106,6 +109,7 @@
                                 </select>
                                 </div>
                             </div>
+                            
                             <div id ="State">
                                 <label for="StateLabel" class="col-md-4 control-label">State</label>
                                 <div class="col-md-6" style = "margin:.5em;margin-left:-.073em;">
@@ -134,6 +138,16 @@
                                  
                                 </div>
                            </div>
+                           <div id ="AssignPrecinct">
+                                     <label for="PrecinctLabel" class="col-md-4 control-label">Assign Manager to Election:</label>
+                                     <div class="col-md-6" style = "margin:.5em;margin-left:-.073em;">
+                                     <select id="manager" name="manager">
+                                        @foreach($managers as $manager)
+                                         <option value = "{{$manager->name}}">{{$manager->name}}</option>
+                                        @endforeach 
+                                    </select>
+                                    </div>
+                            </div> 
                             <div>
                                 <label for="Number_of-Candidates" class="col-md-4 control-label" >Number of Candidates</label>
         

@@ -17,7 +17,8 @@ class ElectionsController extends Controller
         $election = Election::find($id);
         $election->Name = $request->Name;
         $election->Election_info= $request->Election_info;
-        $election->Date = $request->Date;
+        $election->startDate = $request->startDate;
+        $election->endDate = $request->endDate;
         $election->save();
 
 
@@ -40,7 +41,8 @@ class ElectionsController extends Controller
         $election = new Election();
         $election->Name = $request->Name;
         $election->Election_info = $request->Election_info;
-        $election-> Date = $request->Date;
+        $election->startDate = $request->startDate;
+        $election->endDate = $request->endDate;
         $election->Election_Type = $request->Election_Type;
         //Create elections based on precinct
         if($request->Election_Type =="State" || $request->Election_Type=="National"){
@@ -48,8 +50,11 @@ class ElectionsController extends Controller
         }
         $election->State = $request->State;
         $election->precinctID = $request->precinctID;
-        
         $election->save();
+        
+        $precinctManager = $request->manager;
+        //Problem Here
+        //$precinctManager->precinctID = $election->id;
         //Dynamic Candidate Creation
         $c = count($request->Candidate_Name);
         for($i=0;$i<$c;$i++){
