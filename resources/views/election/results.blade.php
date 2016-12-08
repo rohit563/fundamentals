@@ -29,6 +29,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">Total Votes</th>
                                 @foreach($elections->where('Election_Type','National') as $election)
+                                @if($time > $election->endDate)
                                 <tr>
                                     <td>{{$election->Name}}</td>
                                     <td>{{$election->Election_info}}</td>
@@ -40,6 +41,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     @endforeach
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -54,6 +56,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">Total Votes</th>
                                 @foreach($elections->where('Election_Type','State') as $election)
+                                @if($time > $election->endDate)
                                 <tr>
                                     <td>{{$election->Name}}</td>
                                     <td>{{$election->Election_info}}</td>
@@ -65,6 +68,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     @endforeach
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -80,6 +84,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">Total Votes</th>
                                 @foreach($elections->where('Election_Type','Local') as $election)
+                                @if($time > $election->endDate)
                                 <tr>
                                     <td>{{$election->Name}}</td>
                                     <td>{{$election->Election_info}}</td>
@@ -91,6 +96,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     @endforeach
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                                 </table>
                             </div>

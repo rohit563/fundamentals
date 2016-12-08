@@ -10,6 +10,7 @@ use App\Candidate;
 use App\Vote;
 use App\User;
 use Auth;
+use Carbon\Carbon;
 
 class ElectionsController extends Controller
 {
@@ -100,7 +101,8 @@ class ElectionsController extends Controller
         $count = $elections->count();
         $ccount = $candidates->count();
         $votes = Vote::all();
-        return view('election.results',compact('elections','candidates','ccount','count','votes'));
+        $time = Carbon::now();
+        return view('election.results',compact('elections','candidates','ccount','count','votes','time'));
     }
     public function vote($id)
     {
