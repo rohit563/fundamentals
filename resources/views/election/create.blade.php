@@ -7,10 +7,8 @@
         $(document).ready(function() {  
             //if the value within the dropdown box has changed then run this code            
             $('#num_cand').change(function(){
-    
                 //get the number of fields required from the dropdown box
-                var num = $('#num_cand').val();                  
-
+                var num = $('#num_cand').val();                 
                 var i = 0; //integer variable for 'for' loop
                 var html = ''; //string variable for html code for fields 
                 //loop through to add the number of fields specified
@@ -21,9 +19,7 @@
                     html += '<label class="col-md-4 control-label for="Age[]"">Age</label><div class="col-md-6"><input type="text" name="Age[]" id="Age[]" class="form-control" value =""/></div>';
                     html += '<label class="col-md-4 control-label for="Political_Party[]"">Political Party</label><div class="col-md-6" style = "margin:.5em;margin-left:-.073em;;"><select id="Political_Party[]" name="Political_Party[]"><option value="0">- SELECT -</option><option value="Republican">Republican</option><option value="Democratic">Democratic</option><option value="Other">Other</option></select></div>';
                     html += '<label class="col-md-4 control-label for="Candidate_Info[]"">Candidate ' + i + ' Info</label><div class="col-md-6"><input type="text" name="Candidate_Info[]" id="Candidate_Info[]" class="form-control" value=""/></div>';
-                    
                 }
-                
                 //insert this html code into the div with id catList
                 $('#candidateList').html(html);
             });
@@ -164,7 +160,6 @@
                                 </div>
                             </div>
                             <div id="candidateList"></div>
-                            <!--</div>-->
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4" align = "center" style = "margin-top:.2em;margin-bottom:.2em;">
                                     <button type="submit" class="btn btn-primary" value = "Create_Election" text-align = "center">

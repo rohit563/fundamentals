@@ -11,8 +11,7 @@ use Carbon\Carbon;
 
 class ManagerController extends Controller
 {
-    //
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -21,7 +20,6 @@ class ManagerController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -49,9 +47,6 @@ class ManagerController extends Controller
             $election->save();
             return back()->with('warning','Election Stopped Successfully');
         }
-        
-        
-        // return back()->with('message','Error');
     }
     public function publish(Request $request, $id){
         $election = Election::find($id);

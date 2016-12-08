@@ -11,24 +11,45 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function a_general_register()
+    public function test_login()
     {
-        $user = factory(App/User::class)->create([
-            'name' => 'Johnny Test',
-            'email' => 'testing84@gmail.com',
-            'password' => bcrypt('tester'),
-            'username' => 'Testy24R',
-            'passport' => '321348535155',
-            'gender' => 'Male',
-            'address1' => '304 Grand Ave',
-            'city' => 'Iowa City',
-            'state' => 'Iowa',
-            'zip' => '52242',
-            'dob'=> '1995-12-25',
-            'type' => 3
-        ]);
+        $this->visit('/login')
+             ->type('5849db1f86d49', 'username')
+             ->type('1234567', 'password')
+             ->press('Login')
+             ->seePageIs('/user');
         
-        $this->visit(route('register'))
+    }
+    
+    public function test_fail_login()
+    {
+        $this->visit('/login')
+             ->type('5849db1f86d4', 'username')
+             ->type('1234567', 'password')
+             ->press('Login')
+             ->see('These credentials do not match our records.')
+             ->seePageIs('/login');
+        
+    }
+    
+    public function general_register()
+    {
+        // $user = factory(App\User::class)->create([
+        //     'name' => 'Johnny Test',
+        //     'email' => 'testing84@gmail.com',
+        //     'password' => bcrypt('tester'),
+        //     'username' => 'Testy24R',
+        //     'passport' => '321348535155',
+        //     'gender' => 'Male',
+        //     'address1' => '304 Grand Ave',
+        //     'city' => 'Iowa City',
+        //     'state' => 'Iowa',
+        //     'zip' => '52242',
+        //     'dob'=> '1995-12-25',
+        //     'type' => 3
+        // ]);
+        
+        $this->visit('/register')
              ->type($user->name, 'Name')
              ->type($user->email, 'Email')
              ->type('tester', 'Password')
@@ -47,24 +68,24 @@ class LoginTest extends TestCase
              ->onPage('/login');
     }
     
-        public function manager_register()
+    public function manager_register()
     {
-        $user = factory(App/User::class)->create([
-            'name' => 'Johnny Test',
-            'email' => 'testing84@gmail.com',
-            'password' => bcrypt('tester'),
-            'username' => 'Testy24R',
-            'passport' => '321348535155',
-            'gender' => 'Male',
-            'address1' => '304 Grand Ave',
-            'city' => 'Iowa City',
-            'state' => 'Iowa',
-            'zip' => '52242',
-            'dob'=> '1995-12-25',
-            'type' => 2
-        ]);
+        // $user = factory(App\User::class)->create([
+        //     'name' => 'Johnny Test',
+        //     'email' => 'testing48@gmail.com',
+        //     'password' => bcrypt('tester'),
+        //     'username' => 'Testy24R',
+        //     'passport' => '321348535155',
+        //     'gender' => 'Male',
+        //     'address1' => '304 Grand Ave',
+        //     'city' => 'Iowa City',
+        //     'state' => 'Iowa',
+        //     'zip' => '52242',
+        //     'dob'=> '1995-12-25',
+        //     'type' => 2
+        // ]);
         
-        $this->visit(route('register'))
+        $this->visit('/register')
              ->type($user->name, 'Name')
              ->type($user->email, 'Email')
              ->type('tester', 'Password')
@@ -83,4 +104,5 @@ class LoginTest extends TestCase
              ->see('We sent you an activation code. Check your email')
              ->onPage('/login');
     }
+    
 }

@@ -17,10 +17,6 @@ Route::get('/', function () {
 
 Route::auth();
 
-// Route::get('/home', 'HomeController@index');
-
-
-
 Route::get('/add', 'AddController@index');
 Route::get('/profile', 'usercontroller@index');
 Route::put('/profile','usercontroller@update');
@@ -29,12 +25,11 @@ Route::get('/user', 'usercontroller@view');
 Route::get('/election/{id}','ElectionsController@show');
 Route::get('/election/{id}/vote','ElectionsController@vote');
 Route::post('/election/{id}/vote','ElectionsController@sendvote');
-// Route::resource('users','AuthController');
 Route::get('/results','ElectionsController@results');
 Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function()
 {
     Route::get('/manager', 'ManagerController@index');
-Route::get('/manager/publish/{id}', 'ManagerController@publish');
+    Route::get('/manager/publish/{id}', 'ManagerController@publish');
     Route::get('/pagelink/{id}', 'ManagerController@update');
     Route::resource('election','ManagerController');
 });
@@ -43,15 +38,8 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
     Route::get('/admin', 'AdminController@index');
     Route::get('/election','ElectionsController@index');
     Route::post('/election','ElectionsController@store');
-    // Route::post('/election','ElectionsController@create');
-  
     Route::put('/election/{id}','ElectionsController@update');
-    
     Route::resource('election','ElectionsController');
     Route::resource('candidate','ElectionsController');
 });
-
-// Route::resource('election','ManagerController');
-
-
 Route::get('/user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');

@@ -16,14 +16,14 @@ class ElectionsController extends Controller
 {
     public function update(Request $request,$id)
     { 
+        //Update Election
         $election = Election::find($id);
         $election->Name = $request->Name;
         $election->Election_info= $request->Election_info;
         $election->startDate = $request->startDate;
         $election->endDate = $request->endDate;
         $election->save();
-
-
+        //Update Candidates
         $candidates= Candidate::where('Election_id',$election->id)->get();
         $c = count($candidates);
         foreach($candidates as $i=>$candidate)
