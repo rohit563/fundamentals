@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use App\Election;
 use App\Candidate;
 use App\Vote;
+use Carbon\Carbon;
 
 class usercontroller extends Controller
 {
@@ -64,6 +65,7 @@ class usercontroller extends Controller
         $count = $elections->count();
         $ccount = $candidates->count();
         $votes = Vote::all();
-        return view('user',compact('elections','candidates','count','ccount','votes'));
+        $time = Carbon::now();
+        return view('user',compact('elections','candidates','count','ccount','votes','time'));
     }
 }

@@ -76,14 +76,16 @@ class ElectionsController extends Controller
     {
         $precincts = \DB::table('precincts')->get();
         $managers = \DB::table('users')->where('type',2)->get();
+        $candidates = \DB::table('candidates')->get();
         $pcount = count($precincts);
-        return view('election.create',compact('precincts','pcount','managers'));
+        return view('election.create',compact('precincts','pcount','managers','candidates'));
     }
     public function show($id)
     {
         $election = Election::find($id);
         $precincts = \DB::table('precincts')->get();
         $managers = \DB::table('users')->where('type',2)->get();
+        $candidates = \DB::table('candidates')->get();
         $pcount = count($precincts);
         if(!empty($election))
         {
@@ -91,7 +93,7 @@ class ElectionsController extends Controller
             return view('election.show',compact('election','candidates','precincts'));}
         else
         { 
-            return view('election.create',compact('precincts','pcount','managers'));
+            return view('election.create',compact('precincts','pcount','managers','candidates'));
         }
     }
     public function results()

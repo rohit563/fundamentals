@@ -7,7 +7,7 @@
         $(document).ready(function() {  
             //if the value within the dropdown box has changed then run this code            
             $('#num_cand').change(function(){
-                
+    
                 //get the number of fields required from the dropdown box
                 var num = $('#num_cand').val();                  
 

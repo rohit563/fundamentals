@@ -20,10 +20,13 @@ tr:nth-child(even) {background-color: #f2f2f2}
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="get" action="{{ url('/results')}}">
                         <div class="text-center">
-                        <button  class="btn btn-success" value = "View Reults">
-                        <i class="fa fa-btn fa-elections"></i> View Results 
+                        @if(count($elections->where('publishResults',1)) > 0) 
+                        <button  class="btn btn-success">
+                        <i class="fa fa-btn fa-elections"></i> View Published Results 
                         </button>
+                        @endif
                         </div>
+                        
                     </form>
                     <!--<h5 style = "text-align:center;">Total Elections Count: {{$count}}</h5>-->
                     <!--<h5 style = "text-align:center;">Total Candidates Count: {{$ccount}}</h5>-->
@@ -51,6 +54,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                         </form>
                                     </td>
                                     <td>
+                                        @if($election->startDate < $time && $election->endDate > $time && $election->isEnabled == 1 ) 
                                         <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id.'/vote') }}">
                                             <div class="text-center">
                                             <button type="submit" class="btn btn-danger" value = "Vote">
@@ -58,6 +62,11 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                             </button>
                                             </div>
                                         </form>
+                                        @else
+                                            <div class="text-center">
+                                            <button type="button" class="btn btn-danger">Voting Not Available</button>
+                                            </div>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -91,6 +100,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 </form>
                                             </td>
                                             <td>
+                                                @if($election->startDate < $time && $election->endDate > $time && $election->isEnabled == 1 ) 
                                                 <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id.'/vote') }}">
                                                     <div class="text-center">
                                                     <button type="submit" class="btn btn-danger" value = "Vote">
@@ -98,6 +108,11 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                     </button>
                                                     </div>
                                                 </form>
+                                                @else
+                                                    <div class="text-center">
+                                                    <button type="button" class="btn btn-danger">Voting Not Available</button>
+                                                    </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endif
@@ -132,6 +147,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 </form>
                                             </td>
                                             <td>
+                                                @if($election->startDate < $time && $election->endDate > $time && $election->isEnabled == 1 ) 
                                                 <form class="form-horizontal" role="form" method="get" action="{{ url('/election/'.$election->id.'/vote') }}">
                                                     <div class="text-center">
                                                     <button type="submit" class="btn btn-danger" value = "Vote">
@@ -139,6 +155,11 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                     </button>
                                                     </div>
                                                 </form>
+                                                @else
+                                                    <div class="text-center">
+                                                    <button type="button" class="btn btn-danger">Voting Not Available</button>
+                                                    </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endif
