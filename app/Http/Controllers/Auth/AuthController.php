@@ -104,6 +104,8 @@ class AuthController extends Controller
             'gender' => $data['gender'],
             'address1' => $data['address1'],
             'address2' => $data['address2'],
+            'city' => $data['city'],
+            'state' => $data['state'],
             'zip' => $data['zip'],
             'dob' => $data['dob'],
             'type' => $data['account_Type'],

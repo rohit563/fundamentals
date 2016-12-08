@@ -126,11 +126,18 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 </form>
                                             </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                <input type="hidden" name="_method" value="GET">
+                                                <form class="form-horizontal" role="form" method="GET" action="{{ url('/manager/publish/'.$election->id) }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-success" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Publish 
-                                                    </button>
+                                                    @if($election->publishResults == 0)    
+                                                        <button type="submit" class="btn btn-success">
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-play"></i> Publish 
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger" >
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-off"></i> Unpublish 
+                                                        </button>
+                                                    @endif
                                                     </div>
                                                 </form>
                                             </td>
@@ -191,11 +198,18 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 </form>
                                             </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                               <input type="hidden" name="_method" value="GET">
+                                                <form class="form-horizontal" role="form" method="GET" action="{{ url('/manager/publish/'.$election->id) }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-success" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Publish 
-                                                    </button>
+                                                    @if($election->publishResults == 0)    
+                                                        <button type="submit" class="btn btn-success">
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-play"></i> Publish 
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger" >
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-off"></i> Unpublish 
+                                                        </button>
+                                                    @endif
                                                     </div>
                                                 </form>
                                             </td>
@@ -255,11 +269,18 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 </form>
                                             </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                               <input type="hidden" name="_method" value="GET">
+                                                <form class="form-horizontal" role="form" method="GET" action="{{ url('/manager/publish/'.$election->id) }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-success" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Publish 
-                                                    </button>
+                                                    @if($election->publishResults == 0)    
+                                                        <button type="submit" class="btn btn-success">
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-play"></i> Publish 
+                                                        </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger" >
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-off"></i> Unpublish 
+                                                        </button>
+                                                    @endif
                                                     </div>
                                                 </form>
                                             </td>

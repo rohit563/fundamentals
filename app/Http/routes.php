@@ -34,7 +34,7 @@ Route::get('/results','ElectionsController@results');
 Route::group(['middleware' => 'App\Http\Middleware\ManagerMiddleware'], function()
 {
     Route::get('/manager', 'ManagerController@index');
-    // Route::put('/manager', 'ManagerController@updateTimes');
+Route::get('/manager/publish/{id}', 'ManagerController@publish');
     Route::get('/pagelink/{id}', 'ManagerController@update');
     Route::resource('election','ManagerController');
 });

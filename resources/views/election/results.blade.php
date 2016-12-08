@@ -29,19 +29,21 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">Total Votes</th>
                                 @foreach($elections->where('Election_Type','National') as $election)
-                                @if($time > $election->endDate)
-                                <tr>
-                                    <td>{{$election->Name}}</td>
-                                    <td>{{$election->Election_info}}</td>
-                                    <td>
-                                    @foreach($candidates as $candidate)
-                                        @if($election->id == $candidate->Election_id)
-                                            <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
+                                    @if($election->isPublished == 1)
+                                        @if($time > $election->endDate)
+                                        <tr>
+                                            <td>{{$election->Name}}</td>
+                                            <td>{{$election->Election_info}}</td>
+                                            <td>
+                                            @foreach($candidates as $candidate)
+                                                @if($election->id == $candidate->Election_id)
+                                                    <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
+                                                @endif
+                                            @endforeach
+                                            </td>
+                                        </tr>
                                         @endif
-                                    @endforeach
-                                    </td>
-                                </tr>
-                                @endif
+                                    @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -56,19 +58,21 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">Total Votes</th>
                                 @foreach($elections->where('Election_Type','State') as $election)
-                                @if($time > $election->endDate)
-                                <tr>
-                                    <td>{{$election->Name}}</td>
-                                    <td>{{$election->Election_info}}</td>
-                                    <td>
-                                    @foreach($candidates as $candidate)
-                                        @if($election->id == $candidate->Election_id)
-                                            <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
+                                    @if($election->isPublished == 1)
+                                        @if($time > $election->endDate)
+                                        <tr>
+                                            <td>{{$election->Name}}</td>
+                                            <td>{{$election->Election_info}}</td>
+                                            <td>
+                                            @foreach($candidates as $candidate)
+                                                @if($election->id == $candidate->Election_id)
+                                                    <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
+                                                @endif
+                                            @endforeach
+                                            </td>
+                                        </tr>
                                         @endif
-                                    @endforeach
-                                    </td>
-                                </tr>
-                                @endif
+                                    @endif
                                 @endforeach
                                 </table>
                             </div>
@@ -84,19 +88,21 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                     <th style = "text-align:center">Election Info</th>
                                     <th style = "text-align:center">Total Votes</th>
                                 @foreach($elections->where('Election_Type','Local') as $election)
-                                @if($time > $election->endDate)
-                                <tr>
-                                    <td>{{$election->Name}}</td>
-                                    <td>{{$election->Election_info}}</td>
-                                    <td>
-                                    @foreach($candidates as $candidate)
-                                        @if($election->id == $candidate->Election_id)
-                                            <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
+                                    @if($election->isPublished == 1)
+                                        @if($time > $election->endDate)
+                                        <tr>
+                                            <td>{{$election->Name}}</td>
+                                            <td>{{$election->Election_info}}</td>
+                                            <td>
+                                            @foreach($candidates as $candidate)
+                                                @if($election->id == $candidate->Election_id)
+                                                    <h5>{{$candidate->Candidate_Name}}:  {{count($votes->where('Candidate_id',$candidate->id))}} Votes</h5>
+                                                @endif
+                                            @endforeach
+                                            </td>
+                                        </tr>
                                         @endif
-                                    @endforeach
-                                    </td>
-                                </tr>
-                                @endif
+                                    @endif
                                 @endforeach
                                 </table>
                             </div>

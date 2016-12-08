@@ -37,15 +37,6 @@ class ManagerController extends Controller
         
         return view('manager',compact('elections','count','candidates','ccount','date'));
     }
-    public function updateTimes(Request $request){
-        $elections = Election::all();
-        foreach($elections as $election){
-        $election->startDate = $request->input('startDate');
-        $election->endDate = $request->input('endDate');
-        $election->save();
-        }
-        return back()->with('message','Start and Stop Time Updated Successfully');
-    }
     public function update(Request $request, $id) {
         $election = Election::find($id);
         if($election->isEnabled == 0){
@@ -58,6 +49,21 @@ class ManagerController extends Controller
             $election->save();
             return back()->with('warning','Election Stopped Successfully');
         }
+        
+        
         // return back()->with('message','Error');
+    }
+    public function publish(Request $request, $id){
+        $election = Election::find($id);
+        if($election->publishResults ==0){
+            $election->publishResults =1;
+            $election->save();
+            return back()->with('message','Election Published Successfully');
+        }
+        else{
+            $election->publishResults = 0;
+            $election->save();
+            return back()->with('warning','Election Unpublished Successfully');
+        }
     }
 }
