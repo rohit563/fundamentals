@@ -54,7 +54,7 @@ tr:nth-child(even) {background-color: #f2f2f2}
                 <div class="panel-heading">Manager Dashboard</div>
                 <div class="panel-body">
                     @if(Session::has('message'))
-                        <div class="alert alert-danger">
+                        <div class="alert alert-success">
                         <h5>{{ Session::get('message') }}</h5>
                         </div>
                     @endif
@@ -160,7 +160,9 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 <h5 >{{$election->endDate}}</h5>
                                             </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager/', $id = $election->id) }}">
+                                                <!--url('/manager', $id = $election->id)-->
+                                                <input type="hidden" name="_method" value="GET">
+                                                <form class="form-horizontal" role="form" method="GET" action="{{  url('/pagelink/'.$election->id) }}">
                                                     <div class="text-center">
                                                     <button type="submit" class="btn btn-warning" value = "View Election">
                                                     <i class="fa fa-btn fa-elections"></i> Start 

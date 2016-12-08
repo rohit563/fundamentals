@@ -46,7 +46,7 @@ class ManagerController extends Controller
         }
         return back()->with('message','Start and Stop Time Updated Successfully');
     }
-    public function start(Request $request, $id) {
+    public function update(Request $request, $id) {
         $election = Election::find($id);
         $election->isEnabled = 1;
         $election->save();
