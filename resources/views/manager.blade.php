@@ -58,6 +58,11 @@ tr:nth-child(even) {background-color: #f2f2f2}
                         <h5>{{ Session::get('message') }}</h5>
                         </div>
                     @endif
+                    @if (session('warning'))
+                        <div class="alert alert-warning">
+                            {{ session('warning') }}
+                        </div>
+                    @endif
                     <input type="hidden" name="_method" value="PUT">
                     <div class="clock">
                     <div id="Date"></div>
@@ -104,11 +109,19 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 <h5 >{{$election->endDate}}</h5>
                                             </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                <input type="hidden" name="_method" value="GET">
+                                                <form class="form-horizontal" role="form" method="GET" action="{{  url('/pagelink/'.$election->id) }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-warning" value = "1">
-                                                    <i class="fa fa-btn fa-elections"></i> Start 
+                                                    @if ($election->isEnabled == 0)
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-play"></i> Start 
                                                     </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa fa-btn fa-elections glyphicon glyphicon-off"></i> Stop 
+                                                        </button>
+                                                    @endif
+                                                    
                                                     </div>
                                                 </form>
                                             </td>
@@ -164,9 +177,16 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 <input type="hidden" name="_method" value="GET">
                                                 <form class="form-horizontal" role="form" method="GET" action="{{  url('/pagelink/'.$election->id) }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-warning" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Start 
+                                                    @if ($election->isEnabled == 0)
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-play"></i> Start 
                                                     </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa fa-btn fa-elections glyphicon glyphicon-off"></i> Stop 
+                                                        </button>
+                                                    @endif
+                                                    
                                                     </div>
                                                 </form>
                                             </td>
@@ -218,11 +238,19 @@ tr:nth-child(even) {background-color: #f2f2f2}
                                                 <h5 >{{$election->endDate}}</h5>
                                             </td>
                                             <td>
-                                                <form class="form-horizontal" role="form" method="PUT" action="{{ url('/manager') }}">
+                                                <input type="hidden" name="_method" value="GET">
+                                                <form class="form-horizontal" role="form" method="GET" action="{{  url('/pagelink/'.$election->id) }}">
                                                     <div class="text-center">
-                                                    <button type="submit" class="btn btn-warning" value = "View Election">
-                                                    <i class="fa fa-btn fa-elections"></i> Start 
+                                                    @if ($election->isEnabled == 0)
+                                                    <button type="submit" class="btn btn-warning">
+                                                        <i class="fa fa-btn fa-elections glyphicon glyphicon-play"></i> Start 
                                                     </button>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa fa-btn fa-elections glyphicon glyphicon-off"></i> Stop 
+                                                        </button>
+                                                    @endif
+                                                    
                                                     </div>
                                                 </form>
                                             </td>

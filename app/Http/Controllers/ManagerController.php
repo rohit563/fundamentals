@@ -48,8 +48,16 @@ class ManagerController extends Controller
     }
     public function update(Request $request, $id) {
         $election = Election::find($id);
-        $election->isEnabled = 1;
-        $election->save();
-        return back()->with('message','Election Successfully Started');
+        if($election->isEnabled == 0){
+            $election->isEnabled = 1;
+            $election->save();
+            return back()->with('message','Election Successfully Started');
+        }
+        else{
+            $election->isEnabled = 0;
+            $election->save();
+            return back()->with('warning','Election Stopped Successfully');
+        }
+        // return back()->with('message','Error');
     }
 }
