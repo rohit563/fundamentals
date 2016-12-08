@@ -8,6 +8,7 @@ use DB;
 use App\Election;
 use App\Candidate;
 use App\Vote;
+use App\User;
 use Auth;
 
 class ElectionsController extends Controller
@@ -27,9 +28,7 @@ class ElectionsController extends Controller
         foreach($candidates as $i=>$candidate)
         {
             $candidate->Candidate_Name = $request->Candidate_Name[$i];
-            // $candidate->Position = $candidate->Position[$i]; Add later
             $candidate->Age = $request->Age[$i];
-            // $candidate->Political_Party = $candidate->Political_Party[$i]; //Add later
             $candidate->Candidate_Info = $request->Candidate_Info[$i];
             $candidate->Election_id = $election->id;
             $candidate->save();
@@ -38,23 +37,24 @@ class ElectionsController extends Controller
     }
     public function store(Request $request)
     {
+        //Create new Election based on form input
         $election = new Election();
         $election->Name = $request->Name;
         $election->Election_info = $request->Election_info;
         $election->startDate = $request->startDate;
         $election->endDate = $request->endDate;
         $election->Election_Type = $request->Election_Type;
-        //Create elections based on precinct
-        if($request->Election_Type =="State" || $request->Election_Type=="National"){
-            
-        }
         $election->State = $request->State;
         $election->precinctID = $request->precinctID;
         $election->save();
-        
+        //Assign Manager to Precinct Based on Election Type
         $precinctManager = $request->manager;
-        //Problem Here
-        //$precinctManager->precinctID = $election->id;
+        if($request->Election_Type =="State" || $request->Election_Type=="National"){
+            $manager = \DB::table('users')->where('name',$precinctManager)->where('type',2)->update(['precinctID'=> $election->id]);    
+        }
+        else{
+            $manager = \DB::table('users')->where('name',$precinctManager)->where('type',2)->update(['precinctID'=> $request->precinctID]);
+        }
         //Dynamic Candidate Creation
         $c = count($request->Candidate_Name);
         for($i=0;$i<$c;$i++){
@@ -65,17 +65,11 @@ class ElectionsController extends Controller
             $candidate->Age = $request->Age[$i];
             $candidate->Political_Party = $request->Political_Party[$i];
             $candidate->Candidate_Info = $request->Candidate_Info[$i];
+            $candidate->precinctID = $election->precinctID;
             $candidate->Election_id = $election->id;
             $candidate->save();
         }
         return redirect()->back()->with('message','Election and Candidates created successfully');
-    }
-    
-    public function register(Request $request)
-    {
-        $input = $request->all();
-        $election = $this->create($request->all());
-        return back()->with('message','Election Updated Successfully.');
     }
     public function index()
     {
@@ -106,8 +100,6 @@ class ElectionsController extends Controller
         $count = $elections->count();
         $ccount = $candidates->count();
         $votes = Vote::all();
-        // $elections = DB::table('elections')->get();
-        // $candidates = DB::table('candidates')->get();
         return view('election.results',compact('elections','candidates','ccount','count','votes'));
     }
     public function vote($id)
@@ -116,7 +108,6 @@ class ElectionsController extends Controller
         if(!empty($election))
         {
             $candidates = Candidate::where('Election_id',$id)->cursor();
-            // return view('election.show',compact('election','candidates'));
             return view('election.vote',compact('election','candidates'));
         }
     }
@@ -126,7 +117,6 @@ class ElectionsController extends Controller
         if(!empty($election))
         {
             $candidates = Candidate::where('Election_id',$id)->cursor();
-        
             $vote  = new Vote();
             $user = Auth::user();
             $vote->User_id = $user->id;

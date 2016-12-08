@@ -39,7 +39,7 @@
             $('#Election_Type').change(function(){
                 if ($('select[name=Election_Type]').val() == 'Local'){
                     $('#precinct').show();
-                    $('#AssignPrecinct').show();
+                    $('#AssignPrecinct').hide();
                     $('#State').show();
                  }
                 else if ($('select[name=Election_Type]').val() == 'State'){
